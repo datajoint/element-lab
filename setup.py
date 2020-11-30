@@ -1,7 +1,5 @@
-#!/usr/bin/env python
 from setuptools import setup, find_packages
 from os import path
-import sys
 
 here = path.abspath(path.dirname(__file__))
 
@@ -13,7 +11,7 @@ with open(path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='elements_lab',
+    name='elements-lab',
     version='0.0.1',
     description="DataJoint Elements for Lab Management",
     long_description=long_description,
