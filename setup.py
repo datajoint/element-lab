@@ -13,7 +13,7 @@ with open(path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='elements-lab',
+    name='elements_lab',
     version='0.0.1',
     description="DataJoint Elements for Lab Management",
     long_description=long_description,

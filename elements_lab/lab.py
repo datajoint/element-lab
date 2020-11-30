@@ -1,14 +1,18 @@
 import datajoint as dj
-from djutils.templates import SchemaTemplate
 
-schema = SchemaTemplate()
+schema = dj.Schema()
+
+
+def activate(database_name, create_schema=True, create_tables=True):
+    schema.activate(database_name, create_schema=create_schema, create_tables=create_tables)
 
 
 @schema
 class Lab(dj.Lookup):
     definition = """
-    lab             : varchar(32)  # name of lab
+    lab             : varchar(24)  #  Abbreviated lab name 
     ---
+    lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
     address         : varchar(255)
     time_zone       : varchar(64)
@@ -16,13 +20,13 @@ class Lab(dj.Lookup):
 
 
 @schema
-class Location(dj.Lookup):  # revisit the naming
+class Location(dj.Lookup):
     definition = """
     # location of animal housing or experimental rigs
     -> Lab
     location            : varchar(32)
     ---
-    location_desc=''    : varchar(255)
+    location_description=''    : varchar(255)
     """
 
 
@@ -67,7 +71,7 @@ class Protocol(dj.Lookup):
     protocol                : varchar(16)
     ---
     -> ProtocolType
-    protocol_desc=''        : varchar(255)
+    protocol_description=''        : varchar(255)
     """
 
 
@@ -76,7 +80,7 @@ class Project(dj.Lookup):
     definition = """
     project                 : varchar(32)
     ---
-    project_desc=''         : varchar(1024)
+    project_description=''         : varchar(1024)
     """
 
 
@@ -91,10 +95,10 @@ class ProjectUser(dj.Manual):
 @schema
 class Source(dj.Lookup):
     definition = """
-    # source of animal
-    source             : varchar(32)    # nickname of the source
+    # source or supplier of animals
+    source             : varchar(32)    # abbreviated source name
     ---
-    source_name        : varchar(255)	# fullname of source
+    source_name        : varchar(255)
     contact_details='' : varchar(255)
-    source_desc=''     : varchar(255)	# description
+    source_description=''     : varchar(255)
     """
