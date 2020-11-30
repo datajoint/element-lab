@@ -3,8 +3,8 @@ import datajoint as dj
 schema = dj.Schema()
 
 
-def activate(database_name, create_schema=True, create_tables=True):
-    schema.activate(database_name, create_schema=create_schema, create_tables=create_tables)
+def activate(schema_name, create_schema=True, create_tables=True):
+    schema.activate(schema_name, create_schema=create_schema, create_tables=create_tables)
 
 
 @schema
