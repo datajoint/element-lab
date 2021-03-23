@@ -2,6 +2,8 @@
 
 Element Lab contains lab related information, such as Lab, User, Project, Protocol, Source.
 
+Check [here](Background.md) for development background.
+
 ## Element usage
 
 + `element-lab` is not a complete workflow by itself, but rather a modular design of tables and dependencies that can be flexibly attached to any DataJoint workflow.
