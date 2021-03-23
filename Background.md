@@ -1,5 +1,5 @@
 ## Description of modality, user population
-Most pipelines track some information about the lab, including the facilities, experiment rigs, and users. All interviewed labs have some version of these elements. They also have custom interfaces and GUIs for entering.
+Most pipelines track some information about the lab, including the facilities, experiment rigs, and users. All interviewed labs have some version of these elements. They also have custom interfaces and GUIs for data entry.
 
 ## Precursor projects and interviews
 Over the past few years, several labs have developed DataJoint-based pipelines for lab management. Our team collaborated with several of them during their projects. Additionally, we interviewed these teams to understand their experiment workflow, associated tools, and interfaces.
