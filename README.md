@@ -11,4 +11,4 @@ Element Lab contains lab related information, such as Lab, User, Project, Protoc
 
 ## Element architecture
 
-![element lab diagram](images/elements_lab_diagram.svg)
+![element lab diagram](images/element_lab_diagram.svg)
