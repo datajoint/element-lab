@@ -3,14 +3,13 @@ Most pipelines track some information about the lab, including the facilities, e
 
 ## Precursor projects and interviews
 Over the past few years, several labs have developed DataJoint-based pipelines for lab management. Our team collaborated with several of them during their projects. Additionally, we interviewed these teams to understand their experiment workflow, associated tools, and interfaces.
-These teams include
-Team / Institution / Pipeline repository
-+ International Brain Laboratory https://github.com/int-brain-lab/IBL-pipeline
-+ BrainCoGs (Princeton Neuroscience Institute) https://github.com/BrainCOGS/U19-pipeline_python; https://github.com/BrainCOGS/U19-pipeline-matlab
+These teams include:
++ [International Brain Laboratory](https://github.com/int-brain-lab/IBL-pipeline) 
++ BrainCoGs (Princeton Neuroscience Institute), [Python pipeline](https://github.com/BrainCOGS/U19-pipeline_python), [MATLAB pipeline](https://github.com/BrainCOGS/U19-pipeline-matlab)
 + MoC3 (Columbia Zuckerman Institute)
-    + Churchland Lab: https://github.com/ZuckermanBrain/datajoint-churchland/tree/master/churchland_pipeline_python
+    + [Churchland Lab](https://github.com/ZuckermanBrain/datajoint-churchland/tree/master/churchland_pipeline_python)
     + Costa Lab (private repository)
-    + Hillman Lab: https://github.com/ZuckermanBrain/datajoint-hillman
+    + [Hillman Lab](https://github.com/ZuckermanBrain/datajoint-hillman)
 
 ## Development and validation
 Through our interviews and direct collaboration on the precursor projects, we identified the common motifs in the lab schemas to create the Lab Management Element.
