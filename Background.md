@@ -14,4 +14,4 @@ Team / Institution / Pipeline repository
 
 ## Development and validation
 Through our interviews and direct collaboration on the precursor projects, we identified the common motifs in the lab schemas to create the Lab Management Element.
-This element works for diverse downstream pipelines and is always used in combination with other elements for specific experiments. As such it is validated jointly with the acquisition elements such as the Neuropixels Element and Calcium Imaging Element.
+This element works for diverse downstream pipelines and is always used in combination with other elements for specific experiments. As such, it is validated jointly with the acquisition elements such as the [Extracellular Array Electrophysiology Element](https://github.com/datajoint/elements-array-ephys) and [Calcium Imaging Element](https://github.com/datajoint/elements-calcium-imaging).
