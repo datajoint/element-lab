@@ -11,12 +11,6 @@ See [Background](Background.md) for the background information and development t
 
 + See the [datajoint-elements](https://github.com/datajoint/datajoint-elements) repository for a detailed description of the DataJoint elements and workflows.
 
-## Element validation
-
-+ The following scientists have volunteered their time to validate `elements-lab`:
-     + (Person, Lab, Institution, Acquisition system, Analysis package)
-     + 
-
 ## Element architecture
 
 ![element lab diagram](images/element_lab_diagram.svg)
