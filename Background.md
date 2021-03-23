@@ -1,10 +1,12 @@
 ## Description of modality, user population
 Most pipelines track some information about the lab, including the facilities, experiment rigs, and users. All interviewed labs have some version of these elements. They also have custom interfaces and GUIs for data entry.
 
+See [Background](Background.md) for the background information and development timeline.
+
 ## Precursor projects and interviews
 Over the past few years, several labs have developed DataJoint-based pipelines for lab management. Our team collaborated with several of them during their projects. Additionally, we interviewed these teams to understand their experiment workflow, associated tools, and interfaces.
 These teams include:
-+ [International Brain Laboratory](https://github.com/int-brain-lab/IBL-pipeline) 
++ [International Brain Laboratory](https://github.com/int-brain-lab/IBL-pipeline)
 + BrainCoGs (Princeton Neuroscience Institute), [Python pipeline](https://github.com/BrainCOGS/U19-pipeline_python), [MATLAB pipeline](https://github.com/BrainCOGS/U19-pipeline-matlab)
 + MoC3 (Columbia Zuckerman Institute)
     + [Churchland Lab](https://github.com/ZuckermanBrain/datajoint-churchland/tree/master/churchland_pipeline_python)

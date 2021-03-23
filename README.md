@@ -2,7 +2,7 @@
 
 Element Lab contains lab related information, such as Lab, User, Project, Protocol, Source.
 
-Check [here](Background.md) for development background.
+See [Background](Background.md) for the background information and development timeline.
 
 ## Element usage
 
