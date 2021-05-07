@@ -4,6 +4,16 @@ Element Lab contains lab related information, such as Lab, User, Project, Protoc
 
 See [Background](Background.md) for the background information and development timeline.
 
+## Installation
+```
+pip install element-lab
+```
+
+If you already have an older version of ***element-lab*** installed using `pip`, upgrade with
+```
+pip install --upgrade element-lab
+```
+
 ## Element usage
 
 + `element-lab` is not a complete workflow by itself, but rather a modular design of tables and dependencies that can be flexibly attached to any DataJoint workflow.
@@ -14,3 +24,4 @@ See [Background](Background.md) for the background information and development t
 ## Element architecture
 
 ![element lab diagram](images/element_lab_diagram.svg)
+
