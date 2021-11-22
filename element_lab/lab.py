@@ -16,7 +16,7 @@ def activate(schema_name, create_schema=True, create_tables=True):
 @schema
 class Lab(dj.Lookup):
     definition = """
-    lab             : varchar(24)  #  Abbreviated lab name 
+    lab             : varchar(24)    #  Abbreviated lab name
     ---
     lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
@@ -77,7 +77,7 @@ class Protocol(dj.Lookup):
     protocol                : varchar(16)
     ---
     -> ProtocolType
-    protocol_description=''        : varchar(255)
+    protocol_description='' : varchar(255)
     """
 
 
@@ -86,8 +86,37 @@ class Project(dj.Lookup):
     definition = """
     project                 : varchar(32)
     ---
-    project_description=''         : varchar(1024)
+    project_description=''  : varchar(1024)
+    # Below included for archival export (e.g., NWB)
+    repositoryurl=''        : varchar(256) # URL to code for replication
+    repositoryname=''       : varchar(32)  # name of repository
+    pharmacology = ''       : varchar(2048) # Drugs used, how/when administered
+    viruses=''              : varchar(2048) # ID, source, date made, injection loc, volume
+    slices=''               : varchar(2048) # If slicing, preparation thickness, orientation, temperature, and bath solution
+    stimulus=''             : varchar(2048) # Generation method, how/when/where presented
+    surgery=:''             : varchar(2048) # Description of surger(y/ies), who performed, when relative to other events
     """
+
+    class Keywords(dj.Part):
+        definition = """
+        # Project keywords, exported dataset meta info
+        -> master
+        keyword='' : varchar(32)
+        """
+
+    class Publication(dj.Part):
+        definition = """
+        # Project's resulting publications
+        -> master
+        publication='' : varchar(256)
+        """
+
+    class Sourcecode(dj.Part):
+        definition = """
+        # URL to source code for replication
+        # included as source_script in NWB export
+        -> master
+        """
 
 
 @schema
