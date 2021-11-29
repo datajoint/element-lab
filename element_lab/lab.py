@@ -84,6 +84,7 @@ class Protocol(dj.Lookup):
 @schema
 class Project(dj.Lookup):
     definition = """
+    -> Lab
     project                 : varchar(32)
     ---
     project_description=''  : varchar(1024)
@@ -117,6 +118,10 @@ class Project(dj.Lookup):
         # included as source_script in NWB export
         -> master
         """
+
+    def make_nwb(cls, lab_key):
+        from .export import lab_to_nwb
+        return lab_to_nwb(lab_key)
 
 
 @schema

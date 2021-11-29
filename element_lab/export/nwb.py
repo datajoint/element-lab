@@ -6,12 +6,12 @@ from pynwb import NWBFile
 from element_lab import lab
 
 def lab_to_nwb(lab_key):
-  lab_query = lab.Lab & lab_key
+    lab_query = lab.Lab & lab_key
     lab_query = lab_query.join(lab.Lab.Protocol, left=True)
     lab_query = lab_query.join(lab.Lab.Project, left=True)
-  lab_info = lab.query.fetch1()
+    lab_info = lab.query.fetch1()
 
-  return NWBFile(
+    return NWBFile(
     data_collection='',
     experiment_description=lab_info.pop('project_description'),
     institution=lab_info.pop('institution'),
