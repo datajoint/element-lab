@@ -102,7 +102,7 @@ class Project(dj.Lookup):
         definition = """
         # Project keywords, exported dataset meta info
         -> master
-        keyword='' : varchar(32)
+        keyword: varchar(32)
         """
 
     class Publication(dj.Part):
