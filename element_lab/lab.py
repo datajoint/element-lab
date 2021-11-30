@@ -109,7 +109,7 @@ class Project(dj.Lookup):
         definition = """
         # Project's resulting publications
         -> master
-        publication='' : varchar(256)
+        publication: varchar(256)
         """
 
     class Sourcecode(dj.Part):
