@@ -1,13 +1,6 @@
 from datetime import datetime
 from element_lab import lab
 
-'''
-Broz 120121: packages lab, project and protocol data as dicts
-    Updated session nwb export function then reads items
-    if they exist, populates. If not, blank - not best practice.
-    How to populate only NWB items for which we have user entries?
-'''
-
 def lab_to_nwb_dict(lab_key=None):
     if lab_key is not None:
         lab_info = (lab.Lab & lab_key).fetch1()
@@ -36,12 +29,16 @@ def proj_to_nwb_dict(project_key=None):
                 if 'slices' in proj_info else ''),
             source_script=(proj_info['repositoryurl']
                 if 'repositoryurl' in proj_info else ''),
-            stimulus=(list(proj_info['stimulus'])
-                if 'stimulus' in proj_info else []),
             surgery=(proj_info['surgery']
                 if 'surgery' in proj_info else ''),
             virus=(proj_info['virus']
                 if 'virus' in proj_info else '')
+
+            ## AttributeError: 'str' object has no attribute 'parent'
+            ## Broz: I thought these were notes about the stimulus?
+            ##    Error indicates trying to process stim file itself?
+            # stimulus=(list(proj_info['stimulus'])
+            #     if 'stimulus' in proj_info else [])
         )
     else: return {}
 
@@ -59,10 +56,14 @@ def prot_to_nwb_dict(protocol_key=None):
     else: return {}
 
 def elemlab_to_nwb_dict(lab_key=None,project_key=None,protocol_key=None):
-    return dict(
+    elem_info=dict(
         lab_to_nwb_dict(lab_key),
         **proj_to_nwb_dict(project_key),
         **prot_to_nwb_dict(protocol_key)
         )
+    for k in list(elem_info): # Drop blank entries
+        if len(elem_info[k]) == 0: elem_info.pop(k)
+    return elem_info
+
 
 
