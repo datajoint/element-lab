@@ -24,6 +24,10 @@ class Lab(dj.Lookup):
     time_zone       : varchar(64)
     """
 
+    def make_nwb(cls, lab_key):
+        from .export import lab_to_nwb
+        return lab_to_nwb(lab_key)
+
 
 @schema
 class Location(dj.Lookup):
@@ -80,6 +84,9 @@ class Protocol(dj.Lookup):
     protocol_description='' : varchar(255)
     """
 
+    def make_nwb(cls, lab_key):
+        from .export import lab_to_nwb
+        return lab_to_nwb(lab_key)
 
 @schema
 class Project(dj.Lookup):
@@ -95,7 +102,7 @@ class Project(dj.Lookup):
     viruses=''              : varchar(2048) # ID, source, date made, injection loc, volume
     slices=''               : varchar(2048) # If slicing, preparation thickness, orientation, temperature, and bath solution
     stimulus=''             : varchar(2048) # Generation method, how/when/where presented
-    surgery=:''             : varchar(2048) # Description of surger(y/ies), who performed, when relative to other events
+    surgery=''              : varchar(2048) # Description of surger(y/ies), who performed, when relative to other events
     """
 
     class Keywords(dj.Part):
@@ -117,11 +124,10 @@ class Project(dj.Lookup):
         # URL to source code for replication
         # included as source_script in NWB export
         -> master
+        codeurl: varchar(256)
         """
 
-    def make_nwb(cls, lab_key):
-        from .export import lab_to_nwb
-        return lab_to_nwb(lab_key)
+
 
 
 @schema
