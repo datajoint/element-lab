@@ -1,4 +1,5 @@
 from datetime import datetime
+from element_lab import lab
 
 def lab_to_nwb_dict(lab_key=None):
     """
