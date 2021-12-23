@@ -24,11 +24,6 @@ class Lab(dj.Lookup):
     time_zone       : varchar(64)
     """
 
-    def make_nwb(cls, lab_key):
-        from .export import lab_to_nwb
-        return lab_to_nwb(lab_key)
-
-
 @schema
 class Location(dj.Lookup):
     definition = """
