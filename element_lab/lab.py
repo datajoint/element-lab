@@ -117,9 +117,6 @@ class Project(dj.Lookup):
         codeurl: varchar(256)
         """
 
-
-
-
 @schema
 class ProjectUser(dj.Manual):
     definition = """
@@ -138,28 +135,3 @@ class Source(dj.Lookup):
     contact_details='' : varchar(255)
     source_description=''     : varchar(255)
     """
-
-@schema
-class Equipment(dj.Manual):
-    definition = """
-    # Equipment information
-    equipment_id: varchar(16)
-    ---
-    manufacturer: varchar(32)
-    description: varchar(255)
-    """
-
-    class EphysEquipment(dj.Part):
-        definition = """
-        ->master # Needs more here
-        """
-
-    class CaImgEquipment(dj.Part):
-        definition = """
-        ->master # Needs more here
-        caimg_equip_type: varchar(32)
-        ---
-        caimg_equip_descrip: varchar(255)
-        excitation_lambda: float
-        emission_lambda:   float
-        """

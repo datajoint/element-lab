@@ -1,1 +1,1 @@
-from .nwb import *
+from .nwb import elementlab_nwb_dict

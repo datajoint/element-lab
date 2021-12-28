@@ -18,7 +18,7 @@ def lab_to_nwb_dict(lab_key=None):
     else: return {}
 
 
-def proj_to_nwb_dict(project_key=None):
+def project_to_nwb_dict(project_key=None):
     """
     Generate a dictionary object containing relevant project information
         (e.g., experimental description, related publications, etc.).
@@ -54,7 +54,7 @@ def proj_to_nwb_dict(project_key=None):
     else: return {}
 
 
-def prot_to_nwb_dict(protocol_key=None):
+def protocol_to_nwb_dict(protocol_key=None):
     """
     Generate a dictionary object containing all protocol title and notes.
     :param protocol_key: Key specifying one entry in element_lab.lab.Protocol
@@ -71,14 +71,14 @@ def prot_to_nwb_dict(protocol_key=None):
         )
     else: return {}
 
-def elemlab_to_nwb_dict(lab_key=None,project_key=None,protocol_key=None):
+def elementlab_nwb_dict(lab_key=None,project_key=None,protocol_key=None):
     """
     Generate a dictionary object containing all relevant lab information used when
         generating an NWB file at the session level. All parameters optional.
     Use: mynwbfile = NWBfile(identifier="your identifier",
                              session_description="your description",
                              session_start_time=session_datetime,
-                             elemlab_to_nwb_dict(lab_key=key1,project_key=key2,protocol_key=key3))
+                             elementlab_nwb_dict(lab_key=key1,project_key=key2,protocol_key=key3))
     Note: The lab, project and protocol keys should specify one of their respective types.
 
     :param lab_key: Key specifying one entry in element_lab.lab.Lab
@@ -96,8 +96,8 @@ def elemlab_to_nwb_dict(lab_key=None,project_key=None,protocol_key=None):
 
     elem_info=dict(
         lab_to_nwb_dict(lab_key),
-        **proj_to_nwb_dict(project_key),
-        **prot_to_nwb_dict(protocol_key)
+        **project_to_nwb_dict(project_key),
+        **protocol_to_nwb_dict(protocol_key)
         )
 
     for k in list(elem_info): # Drop blank entries
