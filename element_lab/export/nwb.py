@@ -44,12 +44,6 @@ def project_to_nwb_dict(project_key=None):
                 if 'surgery' in proj_info else ''),
             virus=(proj_info['virus']
                 if 'virus' in proj_info else '')
-
-            ## AttributeError: 'str' object has no attribute 'parent'
-            ## Broz: I thought these were notes about the stimulus?
-            ##    Error indicates trying to process stim file itself?
-            # stimulus=(list(proj_info['stimulus'])
-            #     if 'stimulus' in proj_info else [])
         )
     else: return {}
 
