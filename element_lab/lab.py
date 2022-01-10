@@ -107,12 +107,12 @@ class Project(dj.Lookup):
         publication: varchar(256)
         """
 
-    class Sourcecode(dj.Part):
+    class SourceCode(dj.Part):
         definition = """
-        # URL to source code for replication
-        # included as source_script in NWB export
         -> master
-        codeurl: varchar(256)
+        repository_url                : varchar(256)   # URL to source code for replication
+        ---
+        repository_name=''       : varchar(32)
         """
 
 @schema
