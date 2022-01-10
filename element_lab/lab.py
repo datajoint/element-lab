@@ -86,8 +86,6 @@ class Project(dj.Lookup):
     ---
     project_description=''  : varchar(1024)
     # Below included for archival export (e.g., NWB)
-    repositoryurl=''        : varchar(256) # URL to code for replication
-    repositoryname=''       : varchar(32)  # name of repository
     pharmacology = ''       : varchar(2048) # Drugs used, how/when administered
     viruses=''              : varchar(2048) # ID, source, date made, injection loc, volume
     slices=''               : varchar(2048) # If slicing, preparation thickness, orientation, temperature, and bath solution
