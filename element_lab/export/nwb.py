@@ -32,8 +32,7 @@ def project_to_nwb_dict(project_key=None):
         return dict(
             experiment_description=(proj_info.get('project_description', ''),
             keywords=proj_keyw,
-            pharmacology=(proj_info['pharmacology']
-                if 'pharmacology' in proj_info else ''),
+            pharmacology=proj_info.get('pharmacology', ''),
             related_publications=proj_pubs,
             slices=(proj_info['slices']
                 if 'slices' in proj_info else ''),
