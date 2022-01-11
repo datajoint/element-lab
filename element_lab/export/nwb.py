@@ -77,8 +77,8 @@ def elementlab_nwb_dict(lab_key=None,project_key=None,protocol_key=None):
     :return: dictionary with NWB parameters
     """
     ## Validate input
-    if lab_key is not None: assert len(lab.Lab & lab_key) == 1, \
-        f'Multiple labs error! The lab_key should specify only one lab.'
+    if lab_key is not None: 
+        assert len(lab.Lab & lab_key) == 1, 'Multiple labs error! The lab_key should specify only one lab.'
     if project_key is not None: assert len(lab.Project & project_key) == 1, \
         f'Multiple projects error! The project_key should specify only one project.'
     if protocol_key is not None: assert len(lab.Protocol & protocol_key) == 1, \
