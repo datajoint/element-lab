@@ -30,8 +30,7 @@ def project_to_nwb_dict(project_key=None):
         proj_keyw = (lab.Project.Keywords() & project_key).fetch('keyword').tolist()
         proj_pubs = (lab.Project.Publication() & project_key).fetch('publication').tolist()
         return dict(
-            experiment_description=(proj_info['project_description']
-                if 'project_description' in proj_info else ''),
+            experiment_description=(proj_info.get('project_description', ''),
             keywords=proj_keyw,
             pharmacology=(proj_info['pharmacology']
                 if 'pharmacology' in proj_info else ''),
