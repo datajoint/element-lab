@@ -34,8 +34,7 @@ def project_to_nwb_dict(project_key=None):
             keywords=proj_keyw,
             pharmacology=proj_info.get('pharmacology', ''),
             related_publications=proj_pubs,
-            slices=(proj_info['slices']
-                if 'slices' in proj_info else ''),
+            slices=proj_info.get('slices', ''),
             source_script=(proj_info['repositoryurl']
                 if 'repositoryurl' in proj_info else ''),
             surgery=(proj_info['surgery']
