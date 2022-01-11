@@ -36,8 +36,7 @@ def project_to_nwb_dict(project_key=None):
             related_publications=proj_pubs,
             slices=proj_info.get('slices', ''),
             source_script=proj_info.get('repositoryurl', ''),
-            surgery=(proj_info['surgery']
-                if 'surgery' in proj_info else ''),
+            surgery=(proj_info.get('surgery', ''),
             virus=(proj_info['virus']
                 if 'virus' in proj_info else '')
         )
