@@ -76,17 +76,12 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
     """
     # Validate input
     if lab_key is not None: 
-        assert len(lab.Lab & lab_key
-                   ) == 1, ('Multiple labs error! The lab_key should specify '
-                            + 'only one lab.')
-    if project_key is not None:
-        assert len(lab.Project & project_key
-                   ) == 1, ('Multiple projects error! The project_key should'
-                            + ' specify only one project.')
-    if protocol_key is not None:
-        assert len(lab.Protocol & protocol_key
-                   ) == 1, ('Multiple protocols error! The protocol_key should'
-                            + ' specify only one protocol.')
+        assert len(lab.Lab & lab_key) == 1,  'Multiple labs error! '\
+            'The lab_key should specify only one lab.'
+    assert project_key is None or len(lab.Project & project_key) == 1, \
+        'Multiple projects error! The project_key should specify only one project.'
+    assert protocol_key is None or len(lab.Protocol & protocol_key) == 1, \
+        'Multiple protocols error! protocol_key should specify only one protocol.'
 
     elem_info = dict(
         lab_to_nwb_dict(lab_key),
@@ -95,8 +90,6 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
         )
 
     # Drop blank entries
-    for k in list(elem_info):
-        if len(elem_info[k]) == 0:
-            elem_info.pop(k)
+    elem_info = {k: v for k, v in elem_info.items() if v}
 
     return elem_info
