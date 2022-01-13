@@ -10,7 +10,8 @@ def lab_to_nwb_dict(lab_key):
     lab_info = (lab.Lab & lab_key).fetch1()
     return dict(
         institution=lab_info.get('institution', ''),
-        lab=lab_info.get('lab_name', '')
+        lab=lab_info.get('lab_name', ''),
+        time_zone=lab_info.get('time_zone', ''),
     )
 
 

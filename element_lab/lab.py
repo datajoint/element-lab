@@ -25,7 +25,7 @@ class Lab(dj.Lookup):
     lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
     address         : varchar(255)
-    time_zone       : varchar(64)
+    time_zone       : varchar(64)    # 'UTC±X' format for NWB export
     """
 
 
