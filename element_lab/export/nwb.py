@@ -41,12 +41,8 @@ def protocol_to_nwb_dict(protocol_key):
     """
     prot_info = (lab.Protocol & protocol_key).fetch1()
     return dict(
-        # data_collection='',
-        protocol=(prot_info['protocol']
-                  if 'protocol' in prot_info else ''),
-        notes=(prot_info['protocol_description']
-               if 'project_description' in prot_info else '')
-    )
+        protocol=prot_info.get('protocol', ''),
+        notes=prot_info.get('protocol_description', ''))
 
 
 def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
@@ -78,11 +74,11 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
 
     elem_info = dict()
     if lab_key:
-        elem_info.update(**lab_to_nwb_dict(lab_key))
+        elem_info.update(lab_to_nwb_dict(lab_key))
     if project_key:
-        elem_info.update(**project_to_nwb_dict(project_key))
+        elem_info.update(project_to_nwb_dict(project_key))
     if protocol_key:
-        elem_info.update(**protocol_to_nwb_dict(protocol_key))
+        elem_info.update(protocol_to_nwb_dict(protocol_key))
 
     # Drop blank entries
     elem_info = {k: v for k, v in elem_info.items() if v}
