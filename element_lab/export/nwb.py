@@ -9,9 +9,8 @@ def lab_to_nwb_dict(lab_key):
     """
     lab_info = (lab.Lab & lab_key).fetch1()
     return dict(
-        institution=lab_info.get('institution', ''),
-        lab=lab_info.get('lab_name', ''),
-        time_zone=lab_info.get('time_zone', ''),
+        institution=lab_info.get('institution'),
+        lab=lab_info.get('lab_name'),
     )
 
 
@@ -23,14 +22,10 @@ def project_to_nwb_dict(project_key):
     :return: dictionary with NWB parameters
     """
     proj_info = (lab.Project & project_key).fetch1()
-    proj_keyw = (lab.Project.Keywords() & project_key
-                 ).fetch('keyword').tolist()
-    proj_pubs = (lab.Project.Publication() & project_key
-                 ).fetch('publication').tolist()
     return dict(
-        experiment_description=(proj_info.get('project_description', '')),
-        keywords=proj_keyw,
-        related_publications=proj_pubs
+        experiment_description=proj_info.get('project_description'),
+        keywords=(lab.Project.Keywords() & project_key).fetch('keyword').tolist() or None,
+        related_publications=(lab.Project.Publication() & project_key).fetch('publication').tolist() or None
     )
 
 
@@ -42,8 +37,9 @@ def protocol_to_nwb_dict(protocol_key):
     """
     prot_info = (lab.Protocol & protocol_key).fetch1()
     return dict(
-        protocol=prot_info.get('protocol', ''),
-        notes=prot_info.get('protocol_description', ''))
+        protocol=prot_info.get('protocol'),
+        notes=prot_info.get('protocol_description')
+    )
 
 
 def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
@@ -54,8 +50,12 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
     Use: mynwbfile = NWBfile(identifier="your identifier",
                              session_description="your description",
                              session_start_time=session_datetime,
-                             elementlab_nwb_dict(lab_key=key1,project_key=key2,
-                                                 protocol_key=key3))
+                             **elementlab_nwb_dict(
+                                lab_key=key1,
+                                project_key=key2,
+                                protocol_key=key3,
+                                )
+                            )
 
     :param lab_key: Key specifying one entry in element_lab.lab.Lab
     :param project_key: Key specifying one entry in element_lab.lab.Project
@@ -80,8 +80,5 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
         elem_info.update(project_to_nwb_dict(project_key))
     if protocol_key:
         elem_info.update(protocol_to_nwb_dict(protocol_key))
-
-    # Drop blank entries
-    elem_info = {k: v for k, v in elem_info.items() if v}
 
     return elem_info
