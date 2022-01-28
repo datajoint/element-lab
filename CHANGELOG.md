@@ -17,6 +17,6 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Added GitHub Action release process
 + Added `lab` schema
 
-
+[0.1.0b1]: https://github.com/datajoint/element-lab/compare/0.1.0b0...0.1.0b1
 [0.1.0b0]: https://github.com/datajoint/element-lab/compare/0.1.0a1...0.1.0b0
 [0.1.0a1]: https://github.com/datajoint/element-lab/releases/tag/0.1.0a1
