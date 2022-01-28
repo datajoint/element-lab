@@ -4,7 +4,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 
 ## [0.1.0b1] - 2022-01-13
 ### Added
-+ Tools to generate dictionaries for NWB export
++ Added functions to generate dictionaries for NWB export.
 
 
 ## [0.1.0b0] - 2021-05-07

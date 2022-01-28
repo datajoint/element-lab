@@ -21,9 +21,9 @@ def project_to_nwb_dict(project_key):
     :param project_key: Key specifying one entry in element_lab.lab.Project
     :return: dictionary with NWB parameters
     """
-    proj_info = (lab.Project & project_key).fetch1()
+    project_info = (lab.Project & project_key).fetch1()
     return dict(
-        experiment_description=proj_info.get('project_description'),
+        experiment_description=project_info.get('project_description'),
         keywords=(lab.Project.Keywords() & project_key).fetch('keyword').tolist() or None,
         related_publications=(lab.Project.Publication() & project_key).fetch('publication').tolist() or None
     )
@@ -35,14 +35,14 @@ def protocol_to_nwb_dict(protocol_key):
     :param protocol_key: Key specifying one entry in element_lab.lab.Protocol
     :return: dictionary with NWB parameters
     """
-    prot_info = (lab.Protocol & protocol_key).fetch1()
+    protocol_info = (lab.Protocol & protocol_key).fetch1()
     return dict(
-        protocol=prot_info.get('protocol'),
-        notes=prot_info.get('protocol_description')
+        protocol=protocol_info.get('protocol'),
+        notes=protocol_info.get('protocol_description')
     )
 
 
-def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
+def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
     """
     Generate a dictionary object containing all relevant lab information used
         when generating an NWB file at the session level.
@@ -59,7 +59,7 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
 
     :param lab_key: Key specifying one entry in element_lab.lab.Lab
     :param project_key: Key specifying one entry in element_lab.lab.Project
-    :param protocol_key: Key specifying one entry in element_lab.lab.PRotocol
+    :param protocol_key: Key specifying one entry in element_lab.lab.Protocol
     :return: dictionary with NWB parameters
     """
     # Validate input
@@ -70,15 +70,15 @@ def elementlab_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
         'Multiple projects error! The project_key should specify only one '\
         'project.'
     assert protocol_key is None or len(lab.Protocol & protocol_key) == 1, \
-        'Multiple protocols error! protocol_key should specify only one '\
+        'Multiple protocols error! The protocol_key should specify only one '\
         'protocol.'
 
-    elem_info = dict()
+    element_info = dict()
     if lab_key:
-        elem_info.update(lab_to_nwb_dict(lab_key))
+        element_info.update(lab_to_nwb_dict(lab_key))
     if project_key:
-        elem_info.update(project_to_nwb_dict(project_key))
+        element_info.update(project_to_nwb_dict(project_key))
     if protocol_key:
-        elem_info.update(protocol_to_nwb_dict(protocol_key))
+        element_info.update(protocol_to_nwb_dict(protocol_key))
 
-    return elem_info
+    return element_info
