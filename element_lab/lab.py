@@ -94,6 +94,7 @@ class Project(dj.Lookup):
     """
 
 
+@schema
 class ProjectKeywords(dj.Manual):
     definition = """
     # Project keywords, exported dataset meta info
@@ -102,6 +103,7 @@ class ProjectKeywords(dj.Manual):
     """
 
 
+@schema
 class ProjectPublication(dj.Manual):
     definition = """
     # Project's resulting publications
@@ -110,6 +112,7 @@ class ProjectPublication(dj.Manual):
     """
 
 
+@schema
 class ProjectSourceCode(dj.Manual):
     definition = """
     # URL to source code for replication
