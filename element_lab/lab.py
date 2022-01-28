@@ -93,27 +93,31 @@ class Project(dj.Lookup):
     project_description=''  : varchar(1024)
     """
 
-    class Keywords(dj.Part):
-        definition = """
-        # Project keywords, exported dataset meta info
-        -> master
-        keyword: varchar(32)
-        """
 
-    class Publication(dj.Part):
-        definition = """
-        # Project's resulting publications
-        -> master
-        publication: varchar(256)
-        """
+class Keywords(dj.Manual):
+    definition = """
+    # Project keywords, exported dataset meta info
+    -> Project
+    keyword: varchar(32)
+    """
 
-    class SourceCode(dj.Part):
-        definition = """
-        -> master
-        repository_url     : varchar(256) # URL to source code for replication
-        ---
-        repository_name='' : varchar(32)
-        """
+
+class Publication(dj.Manual):
+    definition = """
+    # Project's resulting publications
+    -> Project
+    publication: varchar(256)
+    """
+
+
+class SourceCode(dj.Manual):
+    definition = """
+    # URL to source code for replication
+    -> Project
+    repository_url     : varchar(256)
+    ---
+    repository_name='' : varchar(32)
+    """
 
 
 @schema

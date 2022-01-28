@@ -24,8 +24,9 @@ def project_to_nwb_dict(project_key):
     project_info = (lab.Project & project_key).fetch1()
     return dict(
         experiment_description=project_info.get('project_description'),
-        keywords=(lab.Project.Keywords() & project_key).fetch('keyword').tolist() or None,
-        related_publications=(lab.Project.Publication() & project_key).fetch('publication').tolist() or None
+        keywords=(lab.Keywords() & project_key).fetch('keyword').tolist() or None,
+        related_publications=(lab.Publication() & project_key
+                              ).fetch('publication').tolist() or None
     )
 
 
@@ -53,9 +54,7 @@ def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
                              **elementlab_nwb_dict(
                                 lab_key=key1,
                                 project_key=key2,
-                                protocol_key=key3,
-                                )
-                            )
+                                protocol_key=key3))
 
     :param lab_key: Key specifying one entry in element_lab.lab.Lab
     :param project_key: Key specifying one entry in element_lab.lab.Project
