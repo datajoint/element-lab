@@ -6,22 +6,26 @@ schema = dj.Schema()
 def activate(schema_name, create_schema=True, create_tables=True):
     """
     activate(schema_name, create_schema=True, create_tables=True)
-        :param schema_name: schema name on the database server to activate the `lab` element
-        :param create_schema: when True (default), create schema in the database if it does not yet exist.
-        :param create_tables: when True (default), create tables in the database if they do not yet exist.
+        :param schema_name: schema name on the database server to activate the
+                            `lab` element
+        :param create_schema: when True (default), create schema in the
+                              database if it does not yet exist.
+        :param create_tables: when True (default), create tables in the
+                              database if they do not yet exist.
     """
-    schema.activate(schema_name, create_schema=create_schema, create_tables=create_tables)
+    schema.activate(schema_name, create_schema=create_schema,
+                    create_tables=create_tables)
 
 
 @schema
 class Lab(dj.Lookup):
     definition = """
-    lab             : varchar(24)  #  Abbreviated lab name 
+    lab             : varchar(24)    #  Abbreviated lab name
     ---
     lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
     address         : varchar(255)
-    time_zone       : varchar(64)
+    time_zone       : varchar(64)    # 'UTC±X' format for NWB export
     """
 
 
@@ -77,7 +81,7 @@ class Protocol(dj.Lookup):
     protocol                : varchar(16)
     ---
     -> ProtocolType
-    protocol_description=''        : varchar(255)
+    protocol_description='' : varchar(255)
     """
 
 
@@ -86,7 +90,33 @@ class Project(dj.Lookup):
     definition = """
     project                 : varchar(32)
     ---
-    project_description=''         : varchar(1024)
+    project_description=''  : varchar(1024)
+    """
+
+
+class ProjectKeywords(dj.Manual):
+    definition = """
+    # Project keywords, exported dataset meta info
+    -> Project
+    keyword: varchar(32)
+    """
+
+
+class ProjectPublication(dj.Manual):
+    definition = """
+    # Project's resulting publications
+    -> Project
+    publication: varchar(256)
+    """
+
+
+class ProjectSourceCode(dj.Manual):
+    definition = """
+    # URL to source code for replication
+    -> Project
+    repository_url     : varchar(256)
+    ---
+    repository_name='' : varchar(32)
     """
 
 
@@ -102,9 +132,9 @@ class ProjectUser(dj.Manual):
 class Source(dj.Lookup):
     definition = """
     # source or supplier of animals
-    source             : varchar(32)    # abbreviated source name
+    source                : varchar(32)  # abbreviated source name
     ---
-    source_name        : varchar(255)
-    contact_details='' : varchar(255)
-    source_description=''     : varchar(255)
+    source_name           : varchar(255)
+    contact_details=''    : varchar(255)
+    source_description='' : varchar(255)
     """
