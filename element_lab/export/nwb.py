@@ -49,10 +49,10 @@ def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
     Generate a dictionary object containing all relevant lab information used
         when generating an NWB file at the session level.
         All parameters optional, but should only specify one of respective type
-    Use: mynwbfile = NWBfile(identifier="your identifier",
+    Use: mynwbfile = pynwb.NWBFile(identifier="your identifier",
                              session_description="your description",
                              session_start_time=session_datetime,
-                             **elementlab_nwb_dict(
+                             **element_lab_to_nwb_dict(
                                 lab_key=key1,
                                 project_key=key2,
                                 protocol_key=key3))
