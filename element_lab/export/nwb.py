@@ -24,8 +24,9 @@ def project_to_nwb_dict(project_key):
     project_info = (lab.Project & project_key).fetch1()
     return dict(
         experiment_description=project_info.get('project_description'),
-        keywords=(lab.Keywords() & project_key).fetch('keyword').tolist() or None,
-        related_publications=(lab.Publication() & project_key
+        keywords=(lab.ProjectKeywords() & project_key
+                  ).fetch('keyword').tolist() or None,
+        related_publications=(lab.ProjectPublication() & project_key
                               ).fetch('publication').tolist() or None
     )
 
