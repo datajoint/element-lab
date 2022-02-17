@@ -23,5 +23,5 @@ pip install --upgrade element-lab
 
 ## Element architecture
 
-![element lab diagram](images/element_lab_diagram.svg)
+![element lab diagram](images/lab_diagram.svg)
 
