@@ -23,7 +23,7 @@ setup(
     author_email='info@vathes.com',
     license='MIT',
     url=f'https://github.com/datajoint/{pkg_name.replace("_", "-")}',
-    keywords='neuroscience lab manamgement datajoint',
+    keywords='neuroscience lab management datajoint',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=requirements,
 )
