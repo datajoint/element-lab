@@ -9,8 +9,8 @@ def lab_to_nwb_dict(lab_key):
     """
     lab_info = (lab.Lab & lab_key).fetch1()
     return dict(
-        institution=lab_info.get('institution'),
-        lab=lab_info.get('lab_name'),
+        institution=lab_info.get("institution"),
+        lab=lab_info.get("lab_name"),
     )
 
 
@@ -23,11 +23,13 @@ def project_to_nwb_dict(project_key):
     """
     project_info = (lab.Project & project_key).fetch1()
     return dict(
-        experiment_description=project_info.get('project_description'),
-        keywords=(lab.ProjectKeywords() & project_key
-                  ).fetch('keyword').tolist() or None,
-        related_publications=(lab.ProjectPublication() & project_key
-                              ).fetch('publication').tolist() or None
+        experiment_description=project_info.get("project_description"),
+        keywords=(lab.ProjectKeywords() & project_key).fetch("keyword").tolist()
+        or None,
+        related_publications=(lab.ProjectPublication() & project_key)
+        .fetch("publication")
+        .tolist()
+        or None,
     )
 
 
@@ -39,8 +41,8 @@ def protocol_to_nwb_dict(protocol_key):
     """
     protocol_info = (lab.Protocol & protocol_key).fetch1()
     return dict(
-        protocol=protocol_info.get('protocol'),
-        notes=protocol_info.get('protocol_description')
+        protocol=protocol_info.get("protocol"),
+        notes=protocol_info.get("protocol_description"),
     )
 
 
@@ -63,15 +65,17 @@ def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
     :return: dictionary with NWB parameters
     """
     # Validate input
-    assert any([lab_key, project_key, protocol_key]), 'Must specify one key.'
-    assert lab_key is None or len(lab.Lab & lab_key) == 1, \
-        'Multiple labs error! The lab_key should specify only one lab.'
-    assert project_key is None or len(lab.Project & project_key) == 1, \
-        'Multiple projects error! The project_key should specify only one '\
-        'project.'
-    assert protocol_key is None or len(lab.Protocol & protocol_key) == 1, \
-        'Multiple protocols error! The protocol_key should specify only one '\
-        'protocol.'
+    assert any([lab_key, project_key, protocol_key]), "Must specify one key."
+    assert (
+        lab_key is None or len(lab.Lab & lab_key) == 1
+    ), "Multiple labs error! The lab_key should specify only one lab."
+    assert project_key is None or len(lab.Project & project_key) == 1, (
+        "Multiple projects error! The project_key should specify only one " "project."
+    )
+    assert protocol_key is None or len(lab.Protocol & protocol_key) == 1, (
+        "Multiple protocols error! The protocol_key should specify only one "
+        "protocol."
+    )
 
     element_info = dict()
     if lab_key:
