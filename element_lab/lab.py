@@ -13,8 +13,9 @@ def activate(schema_name, create_schema=True, create_tables=True):
         :param create_tables: when True (default), create tables in the
                               database if they do not yet exist.
     """
-    schema.activate(schema_name, create_schema=create_schema,
-                    create_tables=create_tables)
+    schema.activate(
+        schema_name, create_schema=create_schema, create_tables=create_tables
+    )
 
 
 @schema
