@@ -42,7 +42,6 @@ def activate(
         lab_schema_name,
         create_schema=create_schema,
         create_tables=create_tables,
-        linking_module=_linking_module,
     )
 
     schema.activate(
@@ -85,7 +84,7 @@ class Study(dj.Manual):
     class Protocol(dj.Part):
         definition = """# Information about the experiment(s) approved by some institutions like IACUC, IRB, etc.
         -> master
-        -> Protocol
+        -> lab.Protocol
         """
 
 
