@@ -21,10 +21,11 @@ def activate(schema_name, create_schema=True, create_tables=True):
 @schema
 class Organization(dj.Imported):
     definition = """# Top-level list of all organizations involved in any of the projects
-    organization_name          : VARCHAR(256)                # full organization name
+    organization          : varchar(24)                # Abbreviated organization name
     ---
-    organization_address=''    : VARCHAR(512)                # address of the organization
-    organization_comment=''    : VARCHAR(1024)               # additional notes on the organization
+    organization_name          : varchar(255)   # full organization name
+    organization_address=''    : varchar(512)                # address of the organization
+    organization_comment=''    : varchar(1024)               # additional notes on the organization
     """
 
 
