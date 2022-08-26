@@ -19,15 +19,38 @@ def activate(schema_name, create_schema=True, create_tables=True):
 
 
 @schema
+class Organization(dj.Imported):
+    definition = """# Top-level list of all organizations involved in any of the projects
+    organization_name          : VARCHAR(256)                # full organization name
+    ---
+    organization_address=''    : VARCHAR(512)                # address of the organization
+    organization_comment=''    : VARCHAR(1024)               # additional notes on the organization
+    """
+
+
+@schema
 class Lab(dj.Lookup):
     definition = """
-    lab             : varchar(24)    #  Abbreviated lab name
+    lab             : varchar(24)    # Abbreviated lab name
     ---
     lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
     address         : varchar(255)
-    time_zone       : varchar(64)    # 'UTC±X' format for NWB export
+    time_zone       : varchar(64)    # 'UTC±X' format for NWB export or timezone, e.g., America/New_York
+    -> [nullable] Organization
     """
+
+
+# @schema
+# class Lab(dj.Lookup):
+#     definition = """
+#     lab             : varchar(24)    # Abbreviated lab name
+#     ---
+#     lab_name        : varchar(255)   # full lab name
+#     address         : varchar(255)
+#     time_zone       : varchar(64)    # 'UTC±X' format for NWB export or timezone, e.g., America/New_York
+#     -> Organization
+#     """
 
 
 @schema
@@ -51,10 +74,11 @@ class UserRole(dj.Lookup):
 @schema
 class User(dj.Lookup):
     definition = """
-    user                : varchar(32)
+    user                : varchar(32)  # username is some system
     ---
     user_email=''       : varchar(128)
     user_cellphone=''   : varchar(32)
+    user_fullname=''    : varchar(64)  # full name used to uniquely identify an individual
     """
 
 
@@ -79,56 +103,10 @@ class ProtocolType(dj.Lookup):
 class Protocol(dj.Lookup):
     definition = """
     # protocol approved by some institutions like IACUC, IRB
-    protocol                : varchar(16)
+    protocol                : varchar(36)
     ---
     -> ProtocolType
     protocol_description='' : varchar(255)
-    """
-
-
-@schema
-class Project(dj.Lookup):
-    definition = """
-    project                 : varchar(32)
-    ---
-    project_description=''  : varchar(1024)
-    """
-
-
-@schema
-class ProjectKeywords(dj.Manual):
-    definition = """
-    # Project keywords, exported dataset meta info
-    -> Project
-    keyword: varchar(32)
-    """
-
-
-@schema
-class ProjectPublication(dj.Manual):
-    definition = """
-    # Project's resulting publications
-    -> Project
-    publication: varchar(256)
-    """
-
-
-@schema
-class ProjectSourceCode(dj.Manual):
-    definition = """
-    # URL to source code for replication
-    -> Project
-    repository_url     : varchar(256)
-    ---
-    repository_name='' : varchar(32)
-    """
-
-
-@schema
-class ProjectUser(dj.Manual):
-    definition = """
-    -> Project
-    -> User
     """
 
 
