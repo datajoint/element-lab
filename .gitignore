@@ -100,6 +100,10 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# VSCode
+.vscode
+*.code-workspace
+
 # mkdocs documentation
 /site
 
