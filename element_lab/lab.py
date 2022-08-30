@@ -35,23 +35,15 @@ class Lab(dj.Lookup):
     lab             : varchar(24)    # Abbreviated lab name
     ---
     lab_name        : varchar(255)   # full lab name
-    institution     : varchar(255)
     address         : varchar(255)
     time_zone       : varchar(64)    # 'UTC±X' format or timezone, e.g., America/New_York
-    -> [nullable] Organization
     """
 
-
-# @schema
-# class Lab(dj.Lookup):
-#     definition = """
-#     lab             : varchar(24)    # Abbreviated lab name
-#     ---
-#     lab_name        : varchar(255)   # full lab name
-#     address         : varchar(255)
-#     time_zone       : varchar(64)    # 'UTC±X' format for NWB export or timezone, e.g., America/New_York
-#     -> Organization
-#     """
+    class Organization(dj.Part):
+        definition = """
+        -> master
+        -> Organization
+        """
 
 
 @schema
@@ -103,7 +95,7 @@ class ProtocolType(dj.Lookup):
 @schema
 class Protocol(dj.Lookup):
     definition = """
-    # protocol approved by some institutions like IACUC, IRB
+    # protocol approved by some institutions like IACUC, IRB, or experimental protocol
     protocol                : varchar(36)
     ---
     -> ProtocolType
