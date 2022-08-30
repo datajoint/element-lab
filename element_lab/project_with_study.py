@@ -85,7 +85,7 @@ class Study(dj.Manual):
     class Protocol(dj.Part):
         definition = """# Information about the experiment(s) approved by some institutions like IACUC, IRB, etc.
         -> master
-        -> Protocol
+        -> lab.Protocol
         """
 
 
@@ -94,7 +94,8 @@ class Experiment(dj.Manual):
     definition = """# Experimental tasks and protocols and their associated lab and study
     experiment_uuid                          : UUID                        # unique identifier of the experiment
     ---
-    experiment_name=NULL                     : VARCHAR(32)                 # experiment name or identifier
+    experiment_name=''                    : VARCHAR(32)                 # experiment name or identifier
+
     experiment_description=''                : VARCHAR(1024)               # short description of the focus of the experiment
     -> Study
     -> lab.Lab

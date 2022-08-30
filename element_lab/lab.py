@@ -19,7 +19,7 @@ def activate(schema_name, create_schema=True, create_tables=True):
 
 
 @schema
-class Organization(dj.Imported):
+class Organization(dj.Manual):
     definition = """# Top-level list of all organizations involved in any of the projects
     organization          : varchar(24)                # Abbreviated organization name
     ---
@@ -37,7 +37,7 @@ class Lab(dj.Lookup):
     lab_name        : varchar(255)   # full lab name
     institution     : varchar(255)
     address         : varchar(255)
-    time_zone       : varchar(64)    # 'UTC±X' format for NWB export or timezone, e.g., America/New_York
+    time_zone       : varchar(64)    # 'UTC±X' format or timezone, e.g., America/New_York
     -> [nullable] Organization
     """
 
@@ -75,7 +75,7 @@ class UserRole(dj.Lookup):
 @schema
 class User(dj.Lookup):
     definition = """
-    user                : varchar(32)  # username is some system
+    user                : varchar(32)  # username, short identifier
     ---
     user_email=''       : varchar(128)
     user_cellphone=''   : varchar(32)
