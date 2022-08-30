@@ -42,7 +42,6 @@ def activate(
         lab_schema_name,
         create_schema=create_schema,
         create_tables=create_tables,
-        linking_module=_linking_module,
     )
 
     schema.activate(
