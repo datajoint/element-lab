@@ -33,7 +33,8 @@ def activate(
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
     assert inspect.ismodule(linking_module), (
-        "The argument 'dependency' must" + " be a module or module name"
+        "The argument 'linking_module' must" + " be a module or module name"
+
     )
 
     global _linking_module
@@ -63,7 +64,7 @@ class Project(dj.Manual):
 class ProjectPersonnel(dj.Manual):
     definition = """# List of individuals involved in a project
     -> Project
-    -> lab.User
+    -> User
     """
 
 
@@ -81,7 +82,8 @@ class ProjectPublication(dj.Manual):
     definition = """
     # Project's resulting publications
     -> Project
-    publication: varchar(256)
+    publication: varchar(255)
+
     """
 
 
@@ -90,7 +92,8 @@ class ProjectSourceCode(dj.Manual):
     definition = """
     # URL to source code for replication
     -> Project
-    repository_url     : varchar(256)
+    repository_url     : varchar(255)
+
     ---
     repository_name='' : varchar(32)
     """
