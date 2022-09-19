@@ -1,6 +1,9 @@
 from element_lab import lab
 
 
+raise NotImplementedError('This updated version with "project" schema is not ready for NWB export, stay tuned!')
+
+
 def lab_to_nwb_dict(lab_key):
     """
     Generate a dictionary containing all relevant lab and institution info

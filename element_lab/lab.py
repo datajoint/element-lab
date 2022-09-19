@@ -19,15 +19,31 @@ def activate(schema_name, create_schema=True, create_tables=True):
 
 
 @schema
+class Organization(dj.Manual):
+    definition = """# Top-level list of all organizations involved in any of the projects
+    organization          : varchar(24)                # Abbreviated organization name
+    ---
+    organization_name          : varchar(255)   # full organization name
+    organization_address=''    : varchar(512)                # address of the organization
+    organization_comment=''    : varchar(1024)               # additional notes on the organization
+    """
+
+
+@schema
 class Lab(dj.Lookup):
     definition = """
-    lab             : varchar(24)    #  Abbreviated lab name
+    lab             : varchar(24)    # Abbreviated lab name
     ---
     lab_name        : varchar(255)   # full lab name
-    institution     : varchar(255)
     address         : varchar(255)
-    time_zone       : varchar(64)    # 'UTC±X' format for NWB export
+    time_zone       : varchar(64)    # 'UTC±X' format or timezone, e.g., America/New_York
     """
+
+    class Organization(dj.Part):
+        definition = """
+        -> master
+        -> Organization
+        """
 
 
 @schema
@@ -51,10 +67,11 @@ class UserRole(dj.Lookup):
 @schema
 class User(dj.Lookup):
     definition = """
-    user                : varchar(32)
+    user                : varchar(32)  # username, short identifier
     ---
     user_email=''       : varchar(128)
     user_cellphone=''   : varchar(32)
+    user_fullname=''    : varchar(64)  # full name used to uniquely identify an individual
     """
 
 
@@ -78,57 +95,11 @@ class ProtocolType(dj.Lookup):
 @schema
 class Protocol(dj.Lookup):
     definition = """
-    # protocol approved by some institutions like IACUC, IRB
-    protocol                : varchar(16)
+    # protocol approved by some institutions like IACUC, IRB, or experimental protocol
+    protocol                : varchar(36)
     ---
     -> ProtocolType
     protocol_description='' : varchar(255)
-    """
-
-
-@schema
-class Project(dj.Lookup):
-    definition = """
-    project                 : varchar(32)
-    ---
-    project_description=''  : varchar(1024)
-    """
-
-
-@schema
-class ProjectKeywords(dj.Manual):
-    definition = """
-    # Project keywords, exported dataset meta info
-    -> Project
-    keyword: varchar(32)
-    """
-
-
-@schema
-class ProjectPublication(dj.Manual):
-    definition = """
-    # Project's resulting publications
-    -> Project
-    publication: varchar(256)
-    """
-
-
-@schema
-class ProjectSourceCode(dj.Manual):
-    definition = """
-    # URL to source code for replication
-    -> Project
-    repository_url     : varchar(256)
-    ---
-    repository_name='' : varchar(32)
-    """
-
-
-@schema
-class ProjectUser(dj.Manual):
-    definition = """
-    -> Project
-    -> User
     """
 
 
