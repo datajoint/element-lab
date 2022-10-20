@@ -1,4 +1,3 @@
-## Citation
 
 + If your work uses DataJoint and DataJoint Elements, please cite the respective Research Resource Identifiers (RRIDs) and manuscripts.
 

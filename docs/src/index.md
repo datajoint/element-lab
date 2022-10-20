@@ -1,19 +1,16 @@
-# Element DeepLabCut for Pose Estimation
+# DataJoint Element - Lab
 
-DataJoint Element for markerless pose estimation with
-[DeepLabCut](https://www.deeplabcut.org/).  DataJoint Elements collectively standardize
-and automate data collection and analysis for neuroscience experiments.  Each Element is
-a modular pipeline for data storage and processing with corresponding database
-tables that can be combined with other Elements to assemble a fully functional pipeline.
++ `element-lab` features a DataJoint pipeline design for lab related information, such as Lab, User, Project, Protocol, Source.
 
-Element DeepLabCut runs DeepLabCut which uses image recognition machine learning models
-to generate animal position estimates from consumer grade video equipment.  The Element
-is composed of two schemas for storing data and running analysis:
-- `train` - Manages model training
-- `model` - Manages models and launches pose
-estimation
++ `element-lab` is not a complete workflow by itself, but rather a modular design of tables and dependencies. 
 
-Visit the [Concepts page](./concepts.md) for more information on 
-pose estimation and Element DeepLabCut.  To get started with building your data pipeline visit the [Tutorials page](./tutorials.md).
++ `element-lab` can be flexibly attached to any DataJoint workflow.
 
-![element-deeplabcut diagram](https://raw.githubusercontent.com/datajoint/element-deeplabcut/main/images/diagram_dlc.svg)
++ See the [Element Lab documentation](https://elements.datajoint.org/description/lab/) for the background information and development timeline.
+
++ For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
+
+## Element architecture
+
+![element lab diagram](https://raw.githubusercontent.com/datajoint/element-lab/d222f673e590979a92ff815adb880f474eed338e/images/lab_diagram.svg)
+
