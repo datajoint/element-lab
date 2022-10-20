@@ -2,7 +2,7 @@
 
 site_name: DataJoint Documentation
 repo_url: https://github.com/datajoint/element-Lab
-repo_name: datajoint/element-Lab
+repo_name: datajoint/element-lab
 nav:
   - Element Lab: index.md
   - Concepts: concepts.md
