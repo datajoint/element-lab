@@ -1,6 +1,4 @@
 # MODE="LIVE|QA|PUSH" PACKAGE=element_lab UPSTREAM_REPO=https://github.com/datajoint/element-lab.git HOST_UID=$(id -u) docker compose -f docs/docker-compose.yaml up --build
-# MODE=QA PACKAGE=element_lab UPSTREAM_REPO=https://github.com/JaerongA/element-lab.git HOST_UID=$(id -u) docker compose -f docs/docker-compose.yaml up --build
-#
 # navigate to http://localhost/
 version: "2.4"
 services:
