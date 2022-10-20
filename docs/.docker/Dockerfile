@@ -4,6 +4,8 @@ WORKDIR /main
 COPY --chown=anaconda:anaconda ./docs/.docker/apk_requirements.txt ${APK_REQUIREMENTS}
 COPY --chown=anaconda:anaconda ./docs/.docker/pip_requirements.txt ${PIP_REQUIREMENTS}
 RUN \
+    ls -la /tmp && \
+    cat /tmp/apk_requirements.txt && \
     umask u+rwx,g+rwx,o-rwx && \
     /entrypoint.sh echo "Dependencies installed" && \
     rm ${APK_REQUIREMENTS} ${PIP_REQUIREMENTS} && \
