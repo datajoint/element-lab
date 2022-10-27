@@ -224,7 +224,7 @@ class Source(dj.Lookup):
     Attributes:
         source ( varchar(32) ): Abbreviated source name.
         source_name ( varchar(255) ): Source name.
-        contact_details ( varchar(255) ): Phone number or email.
+        contact_details ( varchar(255) ): Optional. Phone number or email.
         source_description ( varchar(255) ): Optional. Description of the source.
     """
 
