@@ -22,4 +22,4 @@ Over the several years, many labs have developed DataJoint-based pipelines for l
 
 ## Element architecture
 
-![element lab diagram](../../images/lab_diagram.svg)
+![element lab diagram](https://raw.githubusercontent.com/datajoint/element-lab/d222f673e590979a92ff815adb880f474eed338e/images/lab_diagram.svg)
