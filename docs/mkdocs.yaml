@@ -95,7 +95,7 @@ plugins:
       handlers:
         python:
           options:
-            members_order: source      
+            members_order: source
             group_by_category: false
             line_length: 88
   - gen-files:
