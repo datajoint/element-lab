@@ -51,6 +51,7 @@ class Location(dj.Lookup):
     """
 
     definition = """
+    # location of animal housing or experimental rigs
     -> Lab
     location                   : varchar(32)
     ---

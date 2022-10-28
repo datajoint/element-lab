@@ -1,7 +1,7 @@
 from element_lab import lab
 
 
-def lab_to_nwb_dict(lab_key: dict) -> dict:
+def _lab_to_nwb_dict(lab_key: dict) -> dict:
     """Generate a dictionary containing all relevant lab and institution info.
 
     Args:
@@ -17,7 +17,7 @@ def lab_to_nwb_dict(lab_key: dict) -> dict:
     )
 
 
-def project_to_nwb_dict(project_key: dict) -> dict:
+def _project_to_nwb_dict(project_key: dict) -> dict:
     """Generate a dictionary object containing relevant project information
         (e.g., experimental description, related publications, etc.).
 
@@ -40,7 +40,7 @@ def project_to_nwb_dict(project_key: dict) -> dict:
     )
 
 
-def protocol_to_nwb_dict(protocol_key: dict) -> dict:
+def _protocol_to_nwb_dict(protocol_key: dict) -> dict:
     """Generate a dictionary object containing all protocol title and notes.
 
     Args:
@@ -87,10 +87,10 @@ def element_lab_to_nwb_dict(
 
     element_info = dict()
     if lab_key:
-        element_info.update(lab_to_nwb_dict(lab_key))
+        element_info.update(_lab_to_nwb_dict(lab_key))
     if project_key:
-        element_info.update(project_to_nwb_dict(project_key))
+        element_info.update(_project_to_nwb_dict(project_key))
     if protocol_key:
-        element_info.update(protocol_to_nwb_dict(protocol_key))
+        element_info.update(_protocol_to_nwb_dict(protocol_key))
 
     return element_info
