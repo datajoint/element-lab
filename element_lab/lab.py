@@ -13,6 +13,7 @@ def activate(schema_name: str, create_schema: bool = True, create_tables: bool =
         create_tables (bool, optional): when True (default), create schema tables in the database
                              if they do not yet exist.
     """
+
     schema.activate(
         schema_name, create_schema=create_schema, create_tables=create_tables
     )
@@ -225,7 +226,7 @@ class Source(dj.Lookup):
     Attributes:
         source ( varchar(32) ): Abbreviated source name.
         source_name ( varchar(255) ): Source name.
-        contact_details ( varchar(255) ): Optional. Phone number or email.
+        contact_details ( varchar(255) ): Optional. Phone number and/or email.
         source_description ( varchar(255) ): Optional. Description of the source.
     """
 
