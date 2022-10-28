@@ -60,7 +60,9 @@ def protocol_to_nwb_dict(protocol_key: dict) -> dict:
 def element_lab_to_nwb_dict(
     lab_key: dict = None, project_key: dict = None, protocol_key: dict = None
 ) -> dict:
-    """Generate a dictionary object containing all relevant lab information used
+    """Generate a NWB-compliant dictionary object for lab metadata
+    
+    Generate a dictionary object containing all relevant lab information used
        when generating an NWB file at the session level.
        All parameters optional, but should only specify one of respective type.
 
