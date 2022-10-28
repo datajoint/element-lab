@@ -27,7 +27,7 @@ class Lab(dj.Lookup):
         lab_name ( varchar(255) ): Full lab name.
         institution ( varchar(255) ): Name of the affiliation institution.
         address ( varchar(255) ): Physical lab address.
-        time_zone ( varchar(64) ): 'UTC±X' format for NWB export.
+        time_zone ( varchar(64) ): If using NWB export, use 'UTC±X' format
     """
 
     definition = """
@@ -42,12 +42,12 @@ class Lab(dj.Lookup):
 
 @schema
 class Location(dj.Lookup):
-    """Location of animal housing or experimental rigs.
+    """Location of research (e.g., animal housing or experimental rigs)
 
     Attributes:
         Lab (foreign key): Lab key.
-        location ( varchar(32) ): Location of the lab.
-        location_description ( varchar(255) ): Optional. Description of the lab location.
+        location ( varchar(32) ): Location of a space related to the lab
+        location_description ( varchar(255), optional ): Description of the location.
     """
 
     definition = """
@@ -64,11 +64,11 @@ class UserRole(dj.Lookup):
     """Roles assigned to a user or a job title.
 
     Attributes:
-        user_role ( varchar(16) ): (e.g., "PI", "Postdoc", "Surgeon", etc.)
+        user_role ( varchar(16) ): Role within the lab (e.g., PI, Postdoc, etc.)
     """
 
     definition = """
-    user_role           : varchar(16)
+    user_role           : varchar(16) # Role within the lab (e.g., PI, Postdoc, etc.)
     """
 
 
@@ -110,7 +110,7 @@ class LabMembership(dj.Lookup):
 
 @schema
 class ProtocolType(dj.Lookup):
-    """Store protocol types.
+    """Type of protocol or issuing agency
 
     Attributes:
         protocol_type ( varchar(32) ): Protocol types (e.g., IACUC, IRB, etc.).
@@ -123,7 +123,7 @@ class ProtocolType(dj.Lookup):
 
 @schema
 class Protocol(dj.Lookup):
-    """Store information about protocols approved by institutions like IACUC, IRB.
+    """Protocol specifics (e.g., protocol number and title)
 
     Attributes:
         protocol ( varchar(16) ): Protocol identifier.
@@ -141,7 +141,7 @@ class Protocol(dj.Lookup):
 
 @schema
 class Project(dj.Lookup):
-    """Projects undergoing in the lab.
+    """Projects within a lab.
 
     Attributes:
         project ( varchar(32) ): Project identifier.
@@ -157,11 +157,11 @@ class Project(dj.Lookup):
 
 @schema
 class ProjectKeywords(dj.Manual):
-    """Project keywords or exported dataset meta info.
+    """Project keywords or meta-information.
 
     Attributes:
         Project (foreign key): Project key.
-        keyword ( varchar(32) ): Description about the project.
+        keyword ( varchar(32) ): Descriptive keyword about the project.
     """
 
     definition = """

@@ -9,7 +9,4 @@ DataJoint Element for lab metadata. DataJoint Elements collectively standardize 
 
 + `element-lab` can be flexibly attached to any DataJoint workflow.
 
-+ See the [Element Lab documentation](https://elements.datajoint.org/description/lab/) for the background information and development timeline.
-
-+ For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
 
