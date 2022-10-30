@@ -8,9 +8,9 @@ def activate(schema_name: str, create_schema: bool = True, create_tables: bool =
 
     Args:
         schema_name (str): schema name on the database server to activate the `lab` element
-        create_schema (bool, optional): when True (default), create schema in the database if it
+        create_schema (bool): when True (default), create schema in the database if it
                             does not yet exist.
-        create_tables (bool, optional): when True (default), create schema tables in the database
+        create_tables (bool): when True (default), create schema tables in the database
                              if they do not yet exist.
     """
 
@@ -47,12 +47,12 @@ class Location(dj.Lookup):
 
     Attributes:
         Lab (foreign key): Lab key.
-        location ( varchar(32) ): Location of a space related to the lab
+        location ( varchar(32) ): Location of a space related to the lab.
         location_description ( varchar(255), optional ): Description of the location.
     """
 
     definition = """
-    # location of animal housing or experimental rigs
+    # location of research (e.g., animal housing or experimental rigs)
     -> Lab
     location                   : varchar(32)
     ---
@@ -65,7 +65,7 @@ class UserRole(dj.Lookup):
     """Roles assigned to a user or a job title.
 
     Attributes:
-        user_role ( varchar(16) ): Role within the lab (e.g., PI, Postdoc, etc.)
+        user_role ( varchar(16) ): Role within the lab (e.g., PI, Postdoc, etc.).
     """
 
     definition = """
@@ -111,7 +111,7 @@ class LabMembership(dj.Lookup):
 
 @schema
 class ProtocolType(dj.Lookup):
-    """Type of protocol or issuing agency
+    """Type of protocol or issuing agency.
 
     Attributes:
         protocol_type ( varchar(32) ): Protocol types (e.g., IACUC, IRB, etc.).
@@ -124,7 +124,7 @@ class ProtocolType(dj.Lookup):
 
 @schema
 class Protocol(dj.Lookup):
-    """Protocol specifics (e.g., protocol number and title)
+    """Protocol specifics (e.g., protocol number and title).
 
     Attributes:
         protocol ( varchar(16) ): Protocol identifier.
