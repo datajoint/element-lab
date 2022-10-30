@@ -23,3 +23,22 @@ Over the several years, many labs have developed DataJoint-based pipelines for l
 ## Element architecture
 
 ![element lab diagram](https://raw.githubusercontent.com/datajoint/element-lab/d222f673e590979a92ff815adb880f474eed338e/images/lab_diagram.svg)
+
+
+### `lab` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
+
+| Table              | Description                                                      |
+| ------------------ | ---------------------------------------------------------------- |
+| Lab                | Table for storing general lab info.                              |
+| Location           | Location of research (e.g., animal housing or experimental rigs) |
+| UserRole           | Roles assigned to a user or a job title.                         |
+| User               | Table for storing user information.                              |
+| LabMembership      | Store lab membership information using three lookup tables.      |
+| ProtocolType       | Type of protocol or issuing agency.                              |
+| Protocol           | Protocol specifics (e.g., protocol number and title).            |
+| Project            | Projects within a lab.                                           |
+| ProjectKeywords    | Project keywords or meta-information.                            |
+| ProjectPublication | Project's resulting publications.                                |
+| ProjectSourceCode  | URL to source code for replication.                              |
+| ProjectUser        | Users participating in the project.                              |
+| Source             | Source or supplier of subject animals.                           |
