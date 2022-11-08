@@ -60,7 +60,7 @@ class Location(dj.Lookup):
 @schema
 class UserRole(dj.Lookup):
     definition = """
-    user_role       : varchar(16)
+    user_role       : varchar(24)
     """
 
 
