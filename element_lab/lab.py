@@ -81,7 +81,7 @@ class UserRole(dj.Lookup):
     """Roles assigned to a user or a job title.
 
     Attributes:
-        user_role ( varchar(16) ): Role within the lab (e.g., PI, Postdoc, etc.).
+        user_role ( varchar(24) ): Role within the lab (e.g., PI, Postdoc, etc.).
     """
 
     definition = """
@@ -97,6 +97,7 @@ class User(dj.Lookup):
         user ( varchar(32) ): User name.
         user_email ( varchar(128) ): User email address.
         user_cellphone ( varchar(32) ): User cellphone number.
+        user_fullname ( varchar(64) ): User full name
     """
 
     definition = """
@@ -104,7 +105,7 @@ class User(dj.Lookup):
     ---
     user_email=''       : varchar(128)
     user_cellphone=''   : varchar(32)
-    user_fullname=''    : varchar(64)  # full name used to uniquely identify an individual
+    user_fullname=''    : varchar(64)  # full name used to uniquely ID an individual
     """
 
 
@@ -144,7 +145,7 @@ class Protocol(dj.Lookup):
     """Protocol specifics (e.g., protocol number and title).
 
     Attributes:
-        protocol ( varchar(16) ): Protocol identifier.
+        protocol ( varchar(36) ): Protocol identifier.
         ProtocolType (foreign key): ProtocolType key.
         protocol_description( varchar(255) ): Optional. Description of the protocol.
     """
