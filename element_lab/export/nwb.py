@@ -1,14 +1,15 @@
 from element_lab import lab
 
+raise NotImplementedError('The updated Element Lab "project" schema is not ready for NWB export, stay tuned!')
 
-raise NotImplementedError('This updated version with "project" schema is not ready for NWB export, stay tuned!')
+def _lab_to_nwb_dict(lab_key: dict) -> dict:
+    """Generate a dictionary containing all relevant lab and institution info.
 
+    Args:
+        lab_key (dict): Key specifying one entry in element_lab.lab.Lab
 
-def lab_to_nwb_dict(lab_key):
-    """
-    Generate a dictionary containing all relevant lab and institution info
-    :param lab_key: Key specifying one entry in element_lab.lab.Lab
-    :return: dictionary with NWB parameters
+    Returns:
+        dict: Dictionary with NWB parameters.
     """
     lab_info = (lab.Lab & lab_key).fetch1()
     return dict(
@@ -17,13 +18,17 @@ def lab_to_nwb_dict(lab_key):
     )
 
 
-def project_to_nwb_dict(project_key):
-    """
-    Generate a dictionary object containing relevant project information
+def _project_to_nwb_dict(project_key: dict) -> dict:
+    """Generate a dictionary object containing relevant project information
         (e.g., experimental description, related publications, etc.).
-    :param project_key: Key specifying one entry in element_lab.lab.Project
-    :return: dictionary with NWB parameters
+
+    Args:
+        project_key (dict): Key specifying one entry in element_lab.lab.Project
+
+    Returns:
+        dict: Dictionary with NWB parameters.
     """
+
     project_info = (lab.Project & project_key).fetch1()
     return dict(
         experiment_description=project_info.get("project_description"),
@@ -36,12 +41,16 @@ def project_to_nwb_dict(project_key):
     )
 
 
-def protocol_to_nwb_dict(protocol_key):
+def _protocol_to_nwb_dict(protocol_key: dict) -> dict:
+    """Generate a dictionary object containing all protocol title and notes.
+
+    Args:
+        protocol_key (dict): Key specifying one entry in element_lab.lab.Protocol
+
+    Returns:
+        dict: Dictionary with NWB parameters.
     """
-    Generate a dictionary object containing all protocol title and notes.
-    :param protocol_key: Key specifying one entry in element_lab.lab.Protocol
-    :return: dictionary with NWB parameters
-    """
+
     protocol_info = (lab.Protocol & protocol_key).fetch1()
     return dict(
         protocol=protocol_info.get("protocol"),
@@ -49,23 +58,22 @@ def protocol_to_nwb_dict(protocol_key):
     )
 
 
-def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
-    """
+def element_lab_to_nwb_dict(
+    lab_key: dict = None, project_key: dict = None, protocol_key: dict = None
+) -> dict:
+    """Generate a NWB-compliant dictionary object for lab metadata
+    
     Generate a dictionary object containing all relevant lab information used
-        when generating an NWB file at the session level.
-        All parameters optional, but should only specify one of respective type
-    Use: mynwbfile = pynwb.NWBFile(identifier="your identifier",
-                             session_description="your description",
-                             session_start_time=session_datetime,
-                             **element_lab_to_nwb_dict(
-                                lab_key=key1,
-                                project_key=key2,
-                                protocol_key=key3))
+       when generating an NWB file at the session level.
+       All parameters optional, but should only specify one of respective type.
 
-    :param lab_key: Key specifying one entry in element_lab.lab.Lab
-    :param project_key: Key specifying one entry in element_lab.lab.Project
-    :param protocol_key: Key specifying one entry in element_lab.lab.Protocol
-    :return: dictionary with NWB parameters
+    Args:
+        lab_key (dict, optional): Key specifying one entry in element_lab.lab.Lab
+        project_key (dict, optional): Key specifying one entry in element_lab.lab.Project
+        protocol_key (dict, optional): Key specifying one entry in element_lab.lab.Protocol
+
+    Returns:
+        dict: Dictionary with NWB parameters.
     """
     # Validate input
     assert any([lab_key, project_key, protocol_key]), "Must specify one key."
@@ -82,10 +90,10 @@ def element_lab_to_nwb_dict(lab_key=None, project_key=None, protocol_key=None):
 
     element_info = dict()
     if lab_key:
-        element_info.update(lab_to_nwb_dict(lab_key))
+        element_info.update(_lab_to_nwb_dict(lab_key))
     if project_key:
-        element_info.update(project_to_nwb_dict(project_key))
+        element_info.update(_project_to_nwb_dict(project_key))
     if protocol_key:
-        element_info.update(protocol_to_nwb_dict(protocol_key))
+        element_info.update(_protocol_to_nwb_dict(protocol_key))
 
     return element_info
