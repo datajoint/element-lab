@@ -1,4 +1,7 @@
+import logging
 import datajoint as dj
+
+logger = logging.getLogger("datajoint")
 
 schema = dj.Schema()
 
@@ -167,6 +170,11 @@ class Project(dj.Lookup):
         project ( varchar(32) ): Project identifier.
         project_description ( varchar(1024) ): Description about the project.
     """
+
+    logger.warning(
+        "lab.Project and related tables will be removed in a future version of"
+        + " Element Lab. Please use the project schema."
+    )
 
     definition = """
     project                 : varchar(32)

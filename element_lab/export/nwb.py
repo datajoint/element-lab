@@ -1,6 +1,13 @@
+import logging
 from element_lab import lab
 
-raise NotImplementedError('The updated Element Lab "project" schema is not ready for NWB export, stay tuned!')
+logger = logging.getLogger("datajoint")
+
+logger.warning(
+    'Element Lab\'s "project" schema does not yet feature NWB export.'
+    + "Please use lab.Project and lab.Protocol tables"
+)
+
 
 def _lab_to_nwb_dict(lab_key: dict) -> dict:
     """Generate a dictionary containing all relevant lab and institution info.
@@ -62,7 +69,7 @@ def element_lab_to_nwb_dict(
     lab_key: dict = None, project_key: dict = None, protocol_key: dict = None
 ) -> dict:
     """Generate a NWB-compliant dictionary object for lab metadata
-    
+
     Generate a dictionary object containing all relevant lab information used
        when generating an NWB file at the session level.
        All parameters optional, but should only specify one of respective type.
