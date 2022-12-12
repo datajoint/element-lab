@@ -26,9 +26,9 @@ def activate(
         :param linking_module: a module (or name) containing the required
                             dependencies to activate the `event` element:
         Upstream tables:
-            + Lab: table defining 
+            + Lab: table defining general lab information
             + User: table defining user/personnel/experimenter to be associated with Project.
-            + Protocol: 
+            + Protocol: table defining protocol specifics (e.g., protocol number and title)
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
@@ -51,10 +51,11 @@ def activate(
 @schema
 class Project(dj.Manual):
     definition = """# Top-level grouping of studies and experiments to investigate a scientific question
-    project                                  : VARCHAR(24)                 # abbreviated project name
+    project                                  : varchar(24)                 # abbreviated project name
+
     ---
-    project_title                            : VARCHAR(1024)               # full project title and/or description
-    project_start_date                       : DATE                        # the start of the project
+    project_title                            : varchar(1024)               # full project title and/or description
+    project_start_date                       : date                        # the start of the project
     project_end_date=NULL                    : DATE                        # the end date of the project
     project_comment=''                       : VARCHAR(1024)               # additional notes on the project
     """
