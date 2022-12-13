@@ -1,4 +1,5 @@
 import logging
+
 import datajoint as dj
 
 logger = logging.getLogger("datajoint")
