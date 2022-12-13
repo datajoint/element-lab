@@ -1,4 +1,5 @@
 import logging
+
 import datajoint as dj
 
 logger = logging.getLogger("datajoint")
@@ -24,12 +25,21 @@ def activate(schema_name: str, create_schema: bool = True, create_tables: bool =
 
 @schema
 class Organization(dj.Manual):
+    """Top-level list of all organizations involved in any of the projects.
+
+    Attributes:
+        organization ( varchar(24) ): Abbreviated organization name.
+        organization_name ( varchar(255) ): Full organization name.
+        organization_address ( varchar(512) ): Address of the organization.
+        organization_comment ( varchar(1024) ): Additional notes on the organization.
+    """
+
     definition = """# Top-level list of all organizations involved in any of the projects
-    organization          : varchar(24)                # Abbreviated organization name
+    organization               : varchar(24)      # Abbreviated organization name
     ---
-    organization_name          : varchar(255)   # full organization name
-    organization_address=''    : varchar(512)                # address of the organization
-    organization_comment=''    : varchar(1024)               # additional notes on the organization
+    organization_name          : varchar(255)     # Full organization name
+    organization_address=''    : varchar(512)     # Address of the organization
+    organization_comment=''    : varchar(1024)    # Additional notes on the organization
     """
 
 
@@ -40,15 +50,15 @@ class Lab(dj.Lookup):
     Attributes:
         lab ( varchar(24) ): Abbreviated lab name.
         lab_name ( varchar(255) ): Full lab name.
-        institution ( varchar(255) ): Name of the affiliation institution.
         address ( varchar(255) ): Physical lab address.
-        time_zone ( varchar(64) ): If using NWB export, use 'UTC±X' format
+        time_zone ( varchar(64) ): 'UTC±X' format or timezone, e.g., America/New_York.
+            If using NWB export, use 'UTC±X' format.
     """
 
-    definition = """
+    definition = """# Table for storing general lab info.
     lab             : varchar(24)    # Abbreviated lab name
     ---
-    lab_name        : varchar(255)   # full lab name
+    lab_name        : varchar(255)   # Full lab name
     address         : varchar(255)
     time_zone       : varchar(64)    # 'UTC±X' format or timezone, e.g., America/New_York
     """
@@ -62,7 +72,7 @@ class Lab(dj.Lookup):
 
 @schema
 class Location(dj.Lookup):
-    """Location of research (e.g., animal housing or experimental rigs)
+    """Location of research (e.g., animal housing or experimental rigs).
 
     Attributes:
         Lab (foreign key): Lab key.
@@ -70,12 +80,11 @@ class Location(dj.Lookup):
         location_description ( varchar(255), optional ): Description of the location.
     """
 
-    definition = """
-    # location of research (e.g., animal housing or experimental rigs)
+    definition = """# location of research (e.g., animal housing or experimental rigs)
     -> Lab
-    location                   : varchar(32)
+    location                   : varchar(32)   # Location of a space related to the lab
     ---
-    location_description=''    : varchar(255)
+    location_description=''    : varchar(255)  # Description of the location
     """
 
 
@@ -87,7 +96,7 @@ class UserRole(dj.Lookup):
         user_role ( varchar(24) ): Role within the lab (e.g., PI, Postdoc, etc.).
     """
 
-    definition = """
+    definition = """# Roles assigned to a user or a job title.
     user_role           : varchar(24) # Role within the lab (e.g., PI, Postdoc, etc.)
     """
 
@@ -103,7 +112,7 @@ class User(dj.Lookup):
         user_fullname ( varchar(64) ): User full name
     """
 
-    definition = """
+    definition = """# Table for storing user information.
     user                : varchar(32)  # username, short identifier
     ---
     user_email=''       : varchar(128)
@@ -122,7 +131,7 @@ class LabMembership(dj.Lookup):
         UserRole (foreign key): Optional. UserRole primary key.
     """
 
-    definition = """
+    definition = """# Store lab membership information using three lookup tables.
     -> Lab
     -> User
     ---
@@ -138,14 +147,14 @@ class ProtocolType(dj.Lookup):
         protocol_type ( varchar(32) ): Protocol types (e.g., IACUC, IRB, etc.).
     """
 
-    definition = """
-    protocol_type           : varchar(32)
+    definition = """# Type of protocol or issuing agency
+    protocol_type           : varchar(32)  # Protocol types (e.g., IACUC, IRB, etc.)
     """
 
 
 @schema
 class Protocol(dj.Lookup):
-    """Protocol specifics (e.g., protocol number and title).
+    """Protocol approved by some institutions like IACUC, IRB, or experimental protocol.
 
     Attributes:
         protocol ( varchar(36) ): Protocol identifier.
@@ -153,12 +162,11 @@ class Protocol(dj.Lookup):
         protocol_description( varchar(255) ): Optional. Description of the protocol.
     """
 
-    definition = """
-    # protocol approved by some institutions like IACUC, IRB, or experimental protocol
-    protocol                : varchar(36)
+    definition = """# Protocol approved by some institutions like IACUC, IRB, or experimental protocol
+    protocol                : varchar(36)   # Protocol identifier.
     ---
     -> ProtocolType
-    protocol_description='' : varchar(255)
+    protocol_description='' : varchar(255)  # Description of the protocol
     """
 
 

@@ -90,13 +90,13 @@ class ProjectKeywords(dj.Manual):
 
     Attributes:
         Project (foreign key): Project key
-        keyword ( varchar(32) ): Project keyword
+        keyword ( varchar(32) ): Keywords describing the project
     """
 
     definition = """
     # Project keywords, exported dataset meta info
     -> Project
-    keyword: varchar(32)
+    keyword: varchar(32) # Keywords describing the project
     """
 
 
@@ -112,7 +112,7 @@ class ProjectPublication(dj.Manual):
     definition = """
     # Project's resulting publications
     -> Project
-    publication: varchar(255)
+    publication: varchar(255)  # Publication name or citation
 
     """
 
@@ -127,13 +127,12 @@ class ProjectSourceCode(dj.Manual):
         repository_name ( varchar(32), optional): Name of code repository
     """
 
-    definition = """
-    # URL to source code for replication
+    definition = """# URL to source code for replication
     -> Project
-    repository_url     : varchar(255)
+    repository_url     : varchar(255)  # Link to code repository
 
     ---
-    repository_name='' : varchar(32)
+    repository_name='' : varchar(32)   # Name of code repository
     """
 
 
@@ -152,10 +151,10 @@ class Study(dj.Manual):
 
     definition = """# A set of experiments designed to address a specific aim
     -> Project
-    study                : varchar(24)    # abbreviated study name, e.g., 'Aim 1'
+    study                : varchar(24)    # Abbreviated study name, e.g., 'Aim 1'
     ---
-    study_name           : varchar(128)   # full name, e.g., 'perceptual response tasks'
-    study_description='' : varchar(1024)  # goals, objectives, and/or methods
+    study_name           : varchar(128)   # Full name, e.g., 'perceptual response tasks'
+    study_description='' : varchar(1024)  # Description of study goals, objectives, and/or methods
     """
 
     class Protocol(dj.Part):
@@ -177,19 +176,20 @@ class Experiment(dj.Manual):
     """Experimental tasks/protocols and their associated lab and study
 
     Attributes:
-        experiment ( varchar(24) ): abbreviated experiment name
+        experiment ( varchar(24) ): Abbreviated experiment name
         experiment_name ( varchar(128), optional): Experiment full name or identifier
-        experiment_description ( varchar(1024), optional): Experiment's focus
+        experiment_description ( varchar(1024), optional): Description of the
+            experiment's focus
         Study (foreign key): Study key
         Lab (foreign key): Lab key
         Protocol (foreign key, optional): Protocol key
     """
 
     definition = """# Experimental tasks/protocols and their associated lab and study
-    experiment                : varchar(24)   # abbreviated experiment name
+    experiment                : varchar(24)   # Abbreviated experiment name
     ---
-    experiment_name=''        : varchar(128)  # experiment full name or identifier
-    experiment_description='' : varchar(1024) # description of the experiment's focus
+    experiment_name=''        : varchar(128)  # Experiment full name or identifier
+    experiment_description='' : varchar(1024) # Description of the experiment's focus
     -> Study
     -> Lab
     -> [nullable] Protocol
