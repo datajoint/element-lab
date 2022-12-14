@@ -35,11 +35,11 @@ class Organization(dj.Manual):
     """
 
     definition = """# Top-level list of all organizations involved in any of the projects
-    organization               : varchar(24)      # Abbreviated organization name
+    organization      : varchar(24)   # Abbreviated organization name
     ---
-    organization_name          : varchar(255)     # Full organization name
-    organization_address=''    : varchar(512)     # Address of the organization
-    organization_comment=''    : varchar(1024)    # Additional notes on the organization
+    org_name          : varchar(255)  # Full organization name
+    org_address=''    : varchar(512)  # Address of the organization
+    org_comment=''    : varchar(1024) # Additional notes on the organization
     """
 
 
