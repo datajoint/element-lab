@@ -29,9 +29,9 @@ class Organization(dj.Manual):
 
     Attributes:
         organization ( varchar(24) ): Abbreviated organization name.
-        organization_name ( varchar(255) ): Full organization name.
-        organization_address ( varchar(512) ): Address of the organization.
-        organization_comment ( varchar(1024) ): Additional notes on the organization.
+        org_name ( varchar(255) ): Full organization name.
+        org_address ( varchar(512), optional ): Address of the organization.
+        org_comment ( varchar(1024), optional ): Additional notes on the organization.
     """
 
     definition = """# Top-level list of all organizations involved in any of the projects
@@ -59,7 +59,7 @@ class Lab(dj.Lookup):
     lab             : varchar(24)    # Abbreviated lab name
     ---
     lab_name        : varchar(255)   # Full lab name
-    address         : varchar(255)
+    address         : varchar(255)    # Physical lab address
     time_zone       : varchar(64)    # 'UTC±X' format or timezone, e.g., America/New_York
     """
 
@@ -107,9 +107,9 @@ class User(dj.Lookup):
 
     Attributes:
         user ( varchar(32) ): User name.
-        user_email ( varchar(128) ): User email address.
-        user_cellphone ( varchar(32) ): User cellphone number.
-        user_fullname ( varchar(64) ): User full name
+        user_email ( varchar(128), optional ): User email address.
+        user_cellphone ( varchar(32), optional ): User cellphone number.
+        user_fullname ( varchar(64), optional ): User full name
     """
 
     definition = """# Table for storing user information.
@@ -117,7 +117,7 @@ class User(dj.Lookup):
     ---
     user_email=''       : varchar(128)
     user_cellphone=''   : varchar(32)
-    user_fullname=''    : varchar(64)  # full name used to uniquely ID an individual
+    user_fullname=''    : varchar(64)  # Full name used to uniquely identify an individual
     """
 
 
@@ -154,15 +154,15 @@ class ProtocolType(dj.Lookup):
 
 @schema
 class Protocol(dj.Lookup):
-    """Protocol approved by some institutions like IACUC, IRB, or experimental protocol.
+    """Protocol approved by institutions (e.g. IACUC, IRB), or experimental protocol.
 
     Attributes:
         protocol ( varchar(36) ): Protocol identifier.
         ProtocolType (foreign key): ProtocolType key.
-        protocol_description( varchar(255) ): Optional. Description of the protocol.
+        protocol_description( varchar(255), optional ): Description of the protocol.
     """
 
-    definition = """# Protocol approved by some institutions like IACUC, IRB, or experimental protocol
+    definition = """# Protocol approved by institutions (e.g. IACUC, IRB), or experimental protocol.
     protocol                : varchar(36)   # Protocol identifier.
     ---
     -> ProtocolType

@@ -18,13 +18,13 @@ def activate(
     """
     activate(schema_name, create_schema=True, create_tables=True, linking_module=None)
         :param schema_name: schema name on the database server to activate the
-                            `lab` element
+                            `project` module
         :param create_schema: when True (default), create schema in the
                               database if it does not yet exist.
         :param create_tables: when True (default), create tables in the
                               database if they do not yet exist.
         :param linking_module: a module (or name) containing the required
-                            dependencies to activate the `event` element:
+                            dependencies to activate the `project` module.
         Upstream tables:
             + Lab: table defining general lab information
             + User: table defining user/personnel/experimenter associated with Project.
@@ -33,7 +33,8 @@ def activate(
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
     assert inspect.ismodule(linking_module), (
-        "The argument 'linking_module' must" + " be a module or module name"
+        "The argument 'linking_module' must be a module or module name"
+
     )
 
     global _linking_module
@@ -55,13 +56,13 @@ class Project(dj.Manual):
         project ( varchar(24) ): Abbreviated project name
         project_title ( varchar(1024) ): Full project title and/or description
         project_start_date (date): The start of the project
-        project_end_date (date, nullable): The end date of the project
+        project_end_date (date, optional): The end date of the project
         project_comment ( varchar(1024), optional): additional notes on the project
     """
 
     definition = """# Top-level grouping of studies and experiments
-    ---
     project               : varchar(24)   # abbreviated project name
+    ---
     project_title         : varchar(1024) # full project title and/or description
     project_start_date    : date          # the start of the project
     project_end_date=NULL : date          # the end date of the project
@@ -86,7 +87,7 @@ class ProjectPersonnel(dj.Manual):
 
 @schema
 class ProjectKeywords(dj.Manual):
-    """Project keywords, exported dataset meta info
+    """Project keywords. If the dataset is exported, this metadata is saved within the NWB file.
 
     Attributes:
         Project (foreign key): Project key
@@ -94,7 +95,7 @@ class ProjectKeywords(dj.Manual):
     """
 
     definition = """
-    # Project keywords, exported dataset meta info
+    # Project keywords. If the dataset is exported, this metadata is saved within the NWB file.
     -> Project
     keyword: varchar(32) # Keywords describing the project
     """
@@ -113,13 +114,12 @@ class ProjectPublication(dj.Manual):
     # Project's resulting publications
     -> Project
     publication: varchar(255)  # Publication name or citation
-
     """
 
 
 @schema
 class ProjectSourceCode(dj.Manual):
-    """URL to source code for replication
+    """Web address of source code
 
     Attributes:
         Project (foreign key): Project key
@@ -127,7 +127,7 @@ class ProjectSourceCode(dj.Manual):
         repository_name ( varchar(32), optional): Name of code repository
     """
 
-    definition = """# URL to source code for replication
+    definition = """# Web address of source code
     -> Project
     repository_url     : varchar(255)  # Link to code repository
 
@@ -143,8 +143,7 @@ class Study(dj.Manual):
     Attributes:
         Project (foreign key): Project key
         study ( varchar(24) ): Abbreviated study name, e.g., 'Aim 1'
-        study_name ( varchar(128) ): Full study name, e.g., 'perceptual response tasks',
-            or 'Aim 1'
+        study_name ( varchar(128) ): Full study name, e.g., 'perceptual response tasks'
         study_description ( varchar(1024), optional): Description of study goals,
             objectives, and/or methods
     """
@@ -173,7 +172,7 @@ class Study(dj.Manual):
 
 @schema
 class Experiment(dj.Manual):
-    """Experimental tasks/protocols and their associated lab and study
+    """Experimental tasks and their associated lab, study, and protocol
 
     Attributes:
         experiment ( varchar(24) ): Abbreviated experiment name
@@ -185,7 +184,7 @@ class Experiment(dj.Manual):
         Protocol (foreign key, optional): Protocol key
     """
 
-    definition = """# Experimental tasks/protocols and their associated lab and study
+    definition = """# Experimental tasks and their associated lab, study, and protocol
     experiment                : varchar(24)   # Abbreviated experiment name
     ---
     experiment_name=''        : varchar(128)  # Experiment full name or identifier
