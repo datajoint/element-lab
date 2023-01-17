@@ -1,5 +1,7 @@
-from datajoint.errors import DataJointError
 import logging
+
+from datajoint.errors import DataJointError
+
 from .. import lab, project
 
 logger = logging.getLogger("datajoint")

@@ -4,7 +4,7 @@ DataJoint Element for lab metadata. DataJoint Elements collectively standardize 
 
 + `element-lab` features a DataJoint pipeline design for lab related information, such as Lab, User, Project, Protocol, Source.
 
-+ `element-lab` is not a complete workflow by itself, but rather a modular design of tables and dependencies. 
++ `element-lab` is not a complete workflow by itself, but rather a modular design of tables and dependencies.
 
 + `element-lab` can be flexibly attached to any DataJoint workflow.
 

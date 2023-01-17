@@ -32,10 +32,9 @@ def activate(
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
-    assert inspect.ismodule(linking_module), (
-        "The argument 'linking_module' must be a module or module name"
-
-    )
+    assert inspect.ismodule(
+        linking_module
+    ), "The argument 'linking_module' must be a module or module name"
 
     global _linking_module
     _linking_module = linking_module
