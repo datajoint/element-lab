@@ -2,16 +2,24 @@
 
 ## Storage of high-level information about a laboratory 
 
-Most pipelines track some information about the lab, including the facilities, experiment rigs, and users. This can help track which users lab members are associated with which projects or who is responsible for equipment.
+Most pipelines track some information about the lab, including the facilities,
+experiment rigs, and users. This can help track which users lab members are associated
+with which projects or who is responsible for equipment.
 
-Through our interviews and direct collaboration on the precursor projects, we identified the common motifs in the lab schemas. This Element works for diverse downstream pipelines and is always used in combination with other Elements for specific experiments. As such, it is validated jointly with the acquisition Elements such as
-[Extracellular Array Electrophysiology](https://datajoint.com/docs/elements/element-array-ephys) 
-and 
-[Calcium Imaging](https://datajoint.com/docs/elements/element-calcium-imaging).
+Through our interviews and direct collaboration on the precursor projects, we identified
+the common motifs in the lab schemas. This Element works for diverse downstream
+pipelines and is always used in combination with other Elements for specific
+experiments. As such, it is validated jointly with the acquisition Elements such as
+[Extracellular Array
+Electrophysiology](https://datajoint.com/docs/elements/element-array-ephys) and [Calcium
+Imaging](https://datajoint.com/docs/elements/element-calcium-imaging).
 
 ## Key Partnerships
 
-Over the several years, many labs have developed DataJoint-based pipelines for lab management. The DataJoint team collaborated with several and interviewed these teams to understand their experiment workflow, associated tools, and interfaces. These teams include: 
+Over the several years, many labs have developed DataJoint-based pipelines for lab
+management. The DataJoint team collaborated with several and interviewed these teams to
+understand their experiment workflow, associated tools, and interfaces. These teams
+include: 
 
 - International Brain Laboratory
 - BrainCoGs (Princeton Neuroscience Institute), Python pipeline, MATLAB pipeline 
@@ -23,7 +31,6 @@ Over the several years, many labs have developed DataJoint-based pipelines for l
 ## Element architecture
 
 ![element lab diagram](https://raw.githubusercontent.com/datajoint/element-lab/d222f673e590979a92ff815adb880f474eed338e/images/lab_diagram.svg)
-
 
 ### `lab` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
 
