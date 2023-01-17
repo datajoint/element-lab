@@ -3,9 +3,10 @@
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
-## [0.2.0] - 2022-12-12
+## [0.2.0] - 2022-01-20
 
 + Add - `project` schema for project/study/experiment related tables
++ Add - pre-commit and markdown lint checks
 
 ## [0.1.2] - 2022-10-17
 
