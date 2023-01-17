@@ -34,18 +34,35 @@ include:
 
 ### `lab` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
 
-| Table              | Description                                                      |
-| ------------------ | ---------------------------------------------------------------- |
-| Lab                | Table for storing general lab info.                              |
-| Location           | Location of research (e.g., animal housing or experimental rigs) |
-| UserRole           | Roles assigned to a user or a job title.                         |
-| User               | Table for storing user information.                              |
-| LabMembership      | Store lab membership information using three lookup tables.      |
-| ProtocolType       | Type of protocol or issuing agency.                              |
-| Protocol           | Protocol specifics (e.g., protocol number and title).            |
-| Project            | Projects within a lab.                                           |
-| ProjectKeywords    | Project keywords or meta-information.                            |
-| ProjectPublication | Project's resulting publications.                                |
-| ProjectSourceCode  | URL to source code for replication.                              |
-| ProjectUser        | Users participating in the project.                              |
-| Source             | Source or supplier of subject animals.                           |
+| Table                 | Description                                                  |
+| ------------------    | -------------------------------------------------------------|
+| Lab                   | Table for storing general lab info.                          |
+| Location              | Location of research (e.g., animal housing, experimental rigs)|
+| UserRole              | Roles assigned to a user or a job title.                     |
+| User                  | Table for storing user information.                          |
+| LabMembership         | Store lab membership information using three lookup tables.  |
+| ProtocolType          | Type of protocol or issuing agency.                          |
+| Protocol              | Protocol specifics (e.g., protocol number and title).        |
+| Project[^1]           | Projects within a lab.                                       |
+| ProjectKeywords[^1]   | Project keywords or meta-information.                        |
+| ProjectPublication[^1]| Project's resulting publications.                            |
+| ProjectSourceCode[^1] | URL to source code for replication.                          |
+| ProjectUser[^1]       | Users participating in the project.                          |
+| Source                | Source or supplier of subject animals.                       |
+
+[^1]: 
+    Depreciation warning. A subset of the tables above will be removed in a future
+    version of this Element in favor of the `project` schema.
+
+### `project` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
+
+| Table                 | Description                                                  |
+| ------------------    | -------------------------------------------------------------|
+| Project               | Top-level grouping of studies and experiments to investigate a scientific question. |
+| ProjectPersonnel      | List of individuals involved in a project.                   |
+| ProjectKeywords       | Project keywords. If the dataset is exported, this metadata is saved within the NWB file. |
+| ProjectPublication    | Project's resulting publications.                            |
+| ProjectSourceCode     | Web address of source code.                                  |
+| Study                 | A set of experiments designed to address a specific aim.     |
+| Protocol              | Info about institutional approval (e.g., IACUC, IRB, etc.)   |
+| Experiment            | Experimental tasks and their associated lab, study, and protocol. |

@@ -15,20 +15,22 @@ def activate(
     create_tables=True,
     linking_module=None,
 ):
-    """
-    activate(schema_name, create_schema=True, create_tables=True, linking_module=None)
-        :param schema_name: schema name on the database server to activate the
-                            `project` module
-        :param create_schema: when True (default), create schema in the
-                              database if it does not yet exist.
-        :param create_tables: when True (default), create tables in the
-                              database if they do not yet exist.
-        :param linking_module: a module (or name) containing the required
-                            dependencies to activate the `project` module.
-        Upstream tables:
-            + Lab: table defining general lab information
-            + User: table defining user/personnel/experimenter associated with Project.
-            + Protocol: table defining a protocol (e.g., protocol number and title)
+    """Activate this schema
+
+    Args:
+        schema_name (str): schema name on the database server to activate the Element
+        create_schema (bool): when True (default), create schema in the database if it
+            does not yet exist.
+        create_tables (bool): when True (default), create schema tables in the database
+            if they do not yet exist.
+        linking_module (str): A string containing the module name or module containing
+            the required dependencies to activate the schema.
+
+    Dependencies:
+    Upstream tables:
+        Lab: table defining general lab information
+        User: table defining user/personnel/experimenter associated with Project.
+        Protocol: table defining a protocol (e.g., protocol number and title)
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
