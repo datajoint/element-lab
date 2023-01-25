@@ -46,7 +46,7 @@ def _project_to_nwb_dict(project_key: dict) -> dict:
             or None,
         )
     except DataJointError:
-        dict(
+        return dict(
             experiment_description=(project.Project & project_key).fetch1(
                 "project_title"
             )

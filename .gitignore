@@ -106,6 +106,7 @@ ENV/
 # datajoint
 dj_local_conf.json
 dj_local_conf_old.json
+temp*
 
 # emacs
 **/*~
