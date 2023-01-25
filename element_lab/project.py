@@ -145,7 +145,7 @@ class Study(dj.Manual):
         Project (foreign key): Project key
         study ( varchar(24) ): Abbreviated study name, e.g., 'Aim 1'
         study_name ( varchar(128) ): Full study name, e.g., 'perceptual response tasks'
-        study_description ( varchar(1024), optional): Description of study goals,
+        study_description ( varchar(1024), optional ): Description of study goals,
             objectives, and/or methods
     """
 
