@@ -5,10 +5,12 @@ automate data collection and analysis for neuroscience experiments. Each Element
 modular pipeline for data storage and processing with corresponding database tables that
 can be combined with other Elements to assemble a fully functional pipeline.
 
-+ `element-lab` features a DataJoint pipeline design for lab related information, such
-  as Lab, User, Project, Protocol, Source.
+This Element ...
 
-+ `element-lab` is not a complete workflow by itself, but rather a modular design of
-  tables and dependencies. 
+- features a DataJoint pipeline design for lab related information, such as Lab, User,
+  Project, Protocol, Source.
 
-+ `element-lab` can be flexibly attached to any DataJoint workflow.
+- is not a complete workflow by itself, but rather a modular design of tables and
+  dependencies. 
+
+- can be flexibly attached to any DataJoint workflow.
