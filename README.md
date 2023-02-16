@@ -20,9 +20,6 @@ can be combined with other Elements to assemble a fully functional pipeline.
   https://elements.datajoint.org.  This work is supported by the National Institutes of
   Health.
 
-## Element architecture
-
-![element lab diagram](images/lab_diagram.svg)
 
 ## Installation
 
