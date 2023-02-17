@@ -14,3 +14,6 @@ This Element ...
   dependencies. 
 
 - can be flexibly attached to any DataJoint workflow.
+
+Visit the [Concepts page](./concepts.md) for more information on Element Lab.
+To get started with building your data pipeline navigate to the [Tutorials](./tutorials.md) page.
