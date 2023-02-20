@@ -49,8 +49,7 @@ def _project_to_nwb_dict(project_key: dict) -> dict:
         return dict(
             experiment_description=(project.Project & project_key).fetch1(
                 "project_title"
-            )
-            or None,
+            ),
             keywords=(project.ProjectKeywords & project_key).fetch("keyword").tolist()
             or None,
             related_publications=(project.ProjectPublication() & project_key)
