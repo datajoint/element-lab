@@ -3,7 +3,7 @@
 ## Storage of high-level information about a laboratory 
 
 Most pipelines track some information about the lab, including the facilities,
-experiment rigs, and users. This can help track which users lab members are associated
+experiment rigs, and users. This can help track which lab members are associated
 with which projects or who is responsible for equipment.
 
 Through our interviews and direct collaboration on the precursor projects, we identified
@@ -32,7 +32,7 @@ include:
 
 ![element lab diagram](https://raw.githubusercontent.com/datajoint/element-lab/d222f673e590979a92ff815adb880f474eed338e/images/lab_diagram.svg)
 
-### `lab` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
+### `lab` schema ([API docs](../api/element_lab/lab/))
 
 | Table                 | Description                                                  |
 | ------------------    | -------------------------------------------------------------|
@@ -54,7 +54,7 @@ include:
     Depreciation warning. A subset of the tables above will be removed in a future
     version of this Element in favor of the `project` schema.
 
-### `project` schema ([API docs](https://datajoint.com/docs/elements/element-lab/api/element_lab))
+### `project` schema ([API docs](../api/element_lab/project/))
 
 | Table                 | Description                                                  |
 | ------------------    | -------------------------------------------------------------|
