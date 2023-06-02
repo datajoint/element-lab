@@ -6,6 +6,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 ## [0.3.0] - 2023-06-02
 
 + Add - `Device` table to `lab` schema
++ Update - Docs configuration to remove Google Analytics key and add Markdown extensions
 
 ## [0.2.2] - 2023-05-11
 
