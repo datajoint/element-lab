@@ -272,3 +272,21 @@ class Source(dj.Lookup):
     contact_details=''    : varchar(255)
     source_description='' : varchar(255)
     """
+
+
+@schema
+class Device(dj.Lookup):
+    """Devices within the lab.
+
+    Attributes:
+        device ( varchar(32) ): Device short name.
+        modality ( varchar(64) ): Modality for which this device is used.
+        description ( varchar(256) ): Optional. Description of the device.
+    """
+
+    definition = """
+    device             : varchar(32)
+    ---
+    modality           : varchar(64)
+    description=''     : varchar(256)
+    """
