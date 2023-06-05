@@ -3,6 +3,11 @@
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
+## [0.3.0] - 2023-06-02
+
++ Add - `Device` table to `lab` schema
++ Update - Docs configuration to remove Google Analytics key and add Markdown extensions
+
 ## [0.2.2] - 2023-05-11
 
 + Fix - `.ipynb` dark mode output for all notebooks.
@@ -38,6 +43,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - GitHub Action release process
 + Add - `lab` schema
 
+[0.3.0]: https://github.com/datajoint/element-lab/releases/tag/0.3.0
 [0.2.2]: https://github.com/datajoint/element-lab/releases/tag/0.2.2
 [0.2.1]: https://github.com/datajoint/element-lab/releases/tag/0.2.1
 [0.2.0]: https://github.com/datajoint/element-lab/releases/tag/0.2.0
