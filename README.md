@@ -6,4 +6,4 @@ modular pipeline for data storage and processing with corresponding database tab
 can be combined with other Elements to assemble a fully functional pipeline.
 
 Installation and usage instructions can be found at the
-[Element documentation](https://datajoint.com/docs/elements/element-lab).
+[Element documentation](https://docs.datajoint.com/elements/element-lab/).

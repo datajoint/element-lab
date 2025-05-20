@@ -11,8 +11,8 @@ the common motifs in the lab schemas. This Element works for diverse downstream
 pipelines and is always used in combination with other Elements for specific
 experiments. As such, it is validated jointly with the acquisition Elements such as
 [Extracellular Array
-Electrophysiology](https://datajoint.com/docs/elements/element-array-ephys) and [Calcium
-Imaging](https://datajoint.com/docs/elements/element-calcium-imaging).
+Electrophysiology](https://docs.datajoint.com/elements/element-array-ephys/) and [Calcium
+Imaging](https://docs.datajoint.com/elements/element-calcium-imaging/).
 
 ## Key Partnerships
 
