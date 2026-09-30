@@ -38,10 +38,10 @@ def _project_to_nwb_dict(project_key: dict) -> dict:
         project_info = (lab.Project & project_key).fetch1()
         return dict(
             experiment_description=project_info.get("project_description"),
-            keywords=(lab.ProjectKeywords() & project_key).fetch("keyword").tolist()
+            keywords=(lab.ProjectKeywords() & project_key).to_arrays("keyword").tolist()
             or None,
             related_publications=(lab.ProjectPublication() & project_key)
-            .fetch("publication")
+            .to_arrays("publication")
             .tolist()
             or None,
         )
@@ -50,10 +50,12 @@ def _project_to_nwb_dict(project_key: dict) -> dict:
             experiment_description=(project.Project & project_key).fetch1(
                 "project_title"
             ),
-            keywords=(project.ProjectKeywords & project_key).fetch("keyword").tolist()
+            keywords=(project.ProjectKeywords & project_key)
+            .to_arrays("keyword")
+            .tolist()
             or None,
             related_publications=(project.ProjectPublication() & project_key)
-            .fetch("publication")
+            .to_arrays("publication")
             .tolist()
             or None,
         )
